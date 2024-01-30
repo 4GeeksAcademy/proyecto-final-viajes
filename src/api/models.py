@@ -9,7 +9,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     edad = db.Column(db.Integer, unique=False, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    fecha_de_registro = db.Column(db.String(10), unique=False, nullable=False)
+    fecha_de_registro = db.Column(db.Date, unique=False, nullable=False)
     pais_de_residencia = db.Column(db.String(45), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -23,6 +23,7 @@ class User(db.Model):
             "apellidos": self.apellidos,
             "email": self.email,
             "edad": self.edad,
+            "fecha_de_registro": self.fecha_de_registro,
             "pais_de_residencia": self.pais_de_residencia
             # do not serialize the password, its a security breach
         }
