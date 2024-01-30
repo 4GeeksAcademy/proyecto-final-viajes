@@ -9,7 +9,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     edad = db.Column(db.Integer, unique=False, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
-    fecha_de_registro = db.Column(db.Date, unique=False, nullable=False)
+    fecha_de_registro = db.Column(db.String(10), unique=False, nullable=False)
     pais_de_residencia = db.Column(db.String(45), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -39,4 +39,59 @@ class Pais(db.Model):
         return {
             "id": self.id,
             "nombre_de_pais": self.nombre_de_pais
-        }        
+        }
+    
+class Ciudad(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre_de_ciudad = db.Column(db.String(45), unique=False, nullable=False)
+    id_pais = db.Column(db.Integer, db.ForeignKey("pais.id"))
+    pais = db.relationship('Pais')
+
+    def __repr__(self):
+        return f'<Ciudad {self.nombre_de_ciudad}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre_de_ciudad": self.nombre_de_ciudad,
+            "id_pais": self.id_pais
+        }
+
+class Rutas(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre_de_ruta = db.Column(db.String(45), unique=False, nullable=False)
+    distancia = db.Column(db.String(20), unique=False, nullable=False)
+    tiempo_de_recorrido = db.Column(db.String(20), unique=False, nullable=False)
+    id_ciudad = db.Column(db.Integer, db.ForeignKey('ciudad.id'))
+    ciudad = db.relationship('Ciudad')
+
+    def __repr__(self):
+        return f'<Rutas {self.nombre_de_ruta}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre_de_ruta": self.nombre_de_ruta,
+            "distancia": self.distancia,
+            "tiempo_de_recorrido": self.tiempo_de_recorrido,
+            "id_ciudad": self.id_ciudad
+        }
+    
+class Por_Visitar(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    visitada = db.Column(db.Boolean, nullable=False, unique=False)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User')
+    id_ruta = db.Column(db.Integer, db.ForeignKey('rutas.id'))
+    ruta = db.relationship('Rutas')
+
+    def __repr__(self):
+        return f'<Por_Visitar {self.ruta}>'
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "visitada": self.visitada,
+            "id_usuario": self.id_usuario,
+            "id_ruta": self.id_ruta
+        }
