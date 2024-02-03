@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
-import { Context } from "../store/appContext";
-
 import "../../styles/home.css";
 
-export const Home2 = () => {
+export const Formularioiniciarsesion = () => {
 	
 
 	return (
 		<div>
 			<h1>
-				hello world
+				hello world ejemplo 2
 			</h1>
 		</div>
 	);

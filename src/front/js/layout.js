@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Home } from "./pages/home";
-import { Home2 } from "./pages/home2";
+import { Formularioregistrarme } from "./pages/formularioregistrarme";
+import { Formularioiniciarsesion } from "./pages/formularioiniciarsesion";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -20,8 +20,8 @@ const Layout = () => {
                
                     <Navbar />
                     <Routes>
-                        <Route element={<Home />} path="/" />
-                        <Route element={<Home2 />} path="/" />
+                        <Route element={<Formularioregistrarme />} path="/1" />
+                        <Route element={<Formularioiniciarsesion />} path="/2" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
