@@ -33,7 +33,7 @@ class Pais(db.Model):
     nombre_de_pais = db.Column(db.String(45), unique=True, nullable=False)
 
     def __repr__(self):
-        return f'<Pais {self.nombre_de_pais}>'
+        return '<Pais %r>' % self.nombre_de_pais
     
     def serialize(self):
         return {
