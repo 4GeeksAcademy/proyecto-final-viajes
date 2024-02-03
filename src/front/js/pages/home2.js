@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
+
 import "../../styles/home.css";
 
-export const Home = () => {
+export const Home2 = () => {
 	
 
 	return (
 		<div>
-			<h1 className="text-primary">
+			<h1>
 				hello world
 			</h1>
 		</div>
