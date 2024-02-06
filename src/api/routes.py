@@ -7,7 +7,7 @@ from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 import json
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 bcrypt = Bcrypt(api)
@@ -134,3 +134,41 @@ def handle_por_visitar_id(por_visitar_id):
         return jsonify({"msg": "Ruta eliminada de tus rutas"}), 200
     if request.method == 'PUT':
         body = json.loads(request.data)
+        por_visitar.visitada = body['visitada']
+        db.session.commit()
+        return jsonify({"msg": "Ruta marcada como visitada"}), 200
+    return jsonify(por_visitar.serialize()), 200
+
+#Rutas protegidas
+
+@api.route('/paises', ['POST'])
+@jwt_required()
+def agregar_pais():
+    current_user = get_jwt_identity()
+    if current_user is not None:
+        pais = json.loads(request.data)
+        nuevo_pais = Pais(
+            nombre_de_pais=pais['nombre_de_pais']
+        )
+        db.session.add(nuevo_pais)
+        db.session.commit()
+        return jsonify({"msg": "Pais agregado correctamente"}), 200
+    else:
+        return jsonify({"msg": "No estas autorizado para hacer esto"}), 401
+
+@api.route("/paises/<int: pais_id", ['PUT', 'DELETE'])
+@jwt_required()
+def editar_eliminar_pais(pais_id):
+    current_user = get_jwt_identity()
+    if current_user is not None:
+        pais = Pais.query.filter_by(id = pais_id).first()
+        if request.method == 'DELETE':
+            db.session.delete(pais)
+            db.session.commit()
+            return jsonify({"msg": "Pais eliminado correctamente"}), 200
+        if request.method == 'PUT':
+            body = json.loads(request.data)
+            pais.nombre_de_pais = body['nombre_de_pais']
+            return jsonify({"msg": "Pais modificado correctamente"}), 200
+    else:
+        return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
