@@ -1,7 +1,96 @@
-/*
-    home.css: This website contains selectors only used in home.css
+.body {
+    font-family: 'Inter', sans-serif;
+}
 
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.px-4 {
+    padding-right: 2.5rem!important;
+    padding-left: -0.5rem!important;
+    font-size: 15px;
+}
+
+.h4, h4 {
+    padding-left: 8px;
+    font-size: 30px;
+}
+
+.fa-solid, .fas {
+    padding-left: inherit;
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+}
+
+.menu {
+    letter-spacing: 5px;
+}
+
+.rutas {
+    padding-top: 15px;
+}
+
+.nombre {
+    padding-top: 5px;
+    padding-left: 18px;
+}
+
+.servicios {
+    margin-left: 25px;
+    font-size: 30px;
+    letter-spacing: 10px;
+    padding-left: 50px;
+}
+
+.servicio1 {
+    margin-left: 50px;
+    width: 30.333333%;
+}
+
+.servicio2 {
+    padding-top: 150px;
+    margin-left: 15px;
+    width: 30.333333%;
+}
+
+.servicio3 {
+    padding-top: 300px;
+    margin-left: 15px;
+    width: 30.333333%;
+}
+
+.RUTAS {
+    padding-top: 100px;
+    font-size: 30px;
+    letter-spacing: 10px;
+    padding-left: 55px;
+}
+
+.col-4 {
+    flex: 0 0 auto;
+    width: 28.333333%;
+}
+
+.RUTA {
+    margin-left: 45px;
+    margin-top: 50px;
+}
+
+.ordenar {
+    margin-top: 150px;
+    width: 165px;
+    height: 42px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    text-align: end;
+    border-radius: 10px;
+    padding-right: 14px;
+    padding-top: 7px;
+}
