@@ -171,3 +171,20 @@ def editar_eliminar_pais(pais_id):
             return jsonify({"msg": "Pais modificado correctamente"}), 200
     else:
         return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
+    
+@api.route("/ciudad", methods=['POST'])
+@jwt_required()
+def agregar_ciudad():
+    current_user = get_jwt_identity()
+    if current_user is not None:
+        ciudad = json.loads(request.data)
+        nueva_ciudad = Ciudad(
+            nombre_de_ciudad = ciudad['nombre_de_ciudad'],
+            id_pais = ciudad['id_pais']
+        )
+        db.session.add(nueva_ciudad)
+        db.session.commit()
+        return jsonify({"msg": "Ciudad agregada correctamente"}), 200
+    else:
+        return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
+    
