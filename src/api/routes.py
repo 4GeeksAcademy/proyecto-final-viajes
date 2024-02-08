@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint
+from flask import Flask, request, jsonify, url_for, Blueprint, current_app
 from api.models import db, User, Pais, Rutas, Ciudad, Por_Visitar
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -10,18 +10,16 @@ import json
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
-bcrypt = Bcrypt(api)
 
 # Allow CORS requests to this API
 CORS(api)
-
 
 @api.route('/users', methods=['POST', 'GET'])
 def handle_users():
     if request.method == "POST":
         user = json.loads(request.data)
         password = user['password']
-        pw_hash = bcrypt.generate_password_hash(password).decode('utf-8')
+        pw_hash = current_app.bcrypt.generate_password_hash(password).decode('utf-8')
         new_user = User(
             nombre=user['nombre'],
             apellidos=user['apellidos'],
@@ -37,11 +35,11 @@ def handle_users():
         return jsonify({"msg": "Usuario creado correctamente"}), 200
     user = User.query.all()
     if user == []:
-        return jsonify({"msg": "El usuario no existe"}), 404
+        return jsonify({"msg": "No se encontró nungun usuario"}), 404
     response_body = list(map(lambda user: user.serialize(), user))
     return jsonify(response_body), 200
 
-@api.route('/users/<int: user_id>', methods=['GET', 'PUT', 'DELETE'])
+@api.route('/users/<int:user_id>', methods=['GET', 'PUT', 'DELETE'])
 def handle_user_id(user_id):
     user = User.query.filter_by(id = user_id).first()
     if user is None:
@@ -68,22 +66,23 @@ def handle_user_id(user_id):
         return jsonify({"msg": "Sus datos fueron modificados"}), 200
     return jsonify(user.serialize()), 200
 
-@api.route("/login", ['POST'])
+@api.route("/login", methods=['POST'])
 def login():
     email = request.json.get('email')
     password = request.json.get('password')
     user = User.query.filter_by(email=email).first()
     # pw_hash = bcrypt.generate_password_hash(password)
     # user_pw = User.query.filter_by(password=pw_hash).first()
-    exist = bcrypt.check_password_hash(user.password, password)
+    exist = current_app.bcrypt.check_password_hash(user.password, password)
     # user_exist = User.query.filter_by(email=email, password=pw_hash).first()
     if user and exist:
         access_token = create_access_token(identity=email)
-        return jsonify({"token": access_token}), 200
+        response_body = {"token": access_token}
+        return jsonify(response_body), 200
     else:
-        return jsonify({"msg": "Usuario o contraseña incorrectos"})
+        return jsonify({"msg": "Usuario o contraseña incorrectos"}), 404
     
-@api.route("/paises", ['GET'])
+@api.route("/paises", methods=['GET'])
 def handle_paises():
     pais = Pais.query.all()
     if pais == []:
@@ -91,30 +90,30 @@ def handle_paises():
     response_body = list(map(lambda pais: pais.serialize(), pais))
     return jsonify(response_body), 200
 
-@api.route("/ciudad", ['GET'])
-def handle_ciudad(pais):
-    ciudad = Ciudad.query.filter_by(id_pais=pais)
+@api.route("/ciudad", methods=['GET'])
+def handle_ciudad():
+    ciudad = Ciudad.query.all()
     if ciudad == []:
         return jsonify({"msg": "No existen ciudades para mostrar"}), 404
     response_body = list(map(lambda ciudad: ciudad.serialize(), ciudad))
     return jsonify(response_body), 200
 
-@api.route("/ruta", ['GET'])
-def handle_rutas(ciudad):
-    ruta = Rutas.query.filter(id_ciudad=ciudad)
+@api.route("/ruta", methods=['GET'])
+def handle_rutas():
+    ruta = Rutas.query.all()
     if ruta == []:
         return jsonify({"msg": "No hay rutas para mostrar"})
     response_body = list(map(lambda ruta: ruta.serialize(), ruta))
     return jsonify(response_body), 200
 
-@api.route("/por_visitar", ['GET', 'POST'])
+@api.route("/por_visitar", methods=['GET', 'POST'])
 def handle_por_visitar():
     if request.method == 'POST':
         ruta = json.loads(request.data)
         nueva_ruta = Por_Visitar(
             visitada = False,
-            id_usuario = ruta.id_usuario,
-            id_ruta = ruta.id_ruta
+            id_usuario = ruta['id_usuario'],
+            id_ruta = ruta['id_ruta']
         )
         db.session.add(nueva_ruta)
         db.session.commit()
@@ -125,7 +124,7 @@ def handle_por_visitar():
     response_body = list(map(lambda ruta: rutas.serialize(), ruta))
     return jsonify(response_body), 200
 
-@api.route("/por_visitar/<int: por_visitar_id>", ['GET', 'PUT', 'DELETE'])
+@api.route("/por_visitar/<int:por_visitar_id>", methods=['GET', 'PUT', 'DELETE'])
 def handle_por_visitar_id(por_visitar_id):
     por_visitar = Por_Visitar.query.filter_by(id=por_visitar_id).first()
     if request.method == 'DELETE':
@@ -141,7 +140,7 @@ def handle_por_visitar_id(por_visitar_id):
 
 #Rutas protegidas
 
-@api.route('/paises', ['POST'])
+@api.route('/paises', methods=['POST'])
 @jwt_required()
 def agregar_pais():
     current_user = get_jwt_identity()
@@ -156,7 +155,7 @@ def agregar_pais():
     else:
         return jsonify({"msg": "No estas autorizado para hacer esto"}), 401
 
-@api.route("/paises/<int: pais_id", ['PUT', 'DELETE'])
+@api.route("/paises/<int:pais_id>", methods=['PUT', 'DELETE'])
 @jwt_required()
 def editar_eliminar_pais(pais_id):
     current_user = get_jwt_identity()
