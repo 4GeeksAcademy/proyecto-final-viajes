@@ -14,7 +14,7 @@ class User(db.Model):
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<{self.email}>'
 
     def serialize(self):
         return {
@@ -33,7 +33,7 @@ class Pais(db.Model):
     nombre_de_pais = db.Column(db.String(45), unique=True, nullable=False)
 
     def __repr__(self):
-        return '<Pais %r>' % self.nombre_de_pais
+        return '<%r>' % self.nombre_de_pais
     
     def serialize(self):
         return {
@@ -48,7 +48,7 @@ class Ciudad(db.Model):
     pais = db.relationship('Pais')
 
     def __repr__(self):
-        return f'<Ciudad {self.nombre_de_ciudad}>'
+        return f'<{self.nombre_de_ciudad}>'
     
     def serialize(self):
         return {
@@ -60,13 +60,13 @@ class Ciudad(db.Model):
 class Rutas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre_de_ruta = db.Column(db.String(45), unique=False, nullable=False)
-    distancia = db.Column(db.String(20), unique=False, nullable=False)
+    distancia = db.Column(db.Integer, unique=False, nullable=False)
     tiempo_de_recorrido = db.Column(db.String(20), unique=False, nullable=False)
     id_ciudad = db.Column(db.Integer, db.ForeignKey('ciudad.id'))
     ciudad = db.relationship('Ciudad')
 
     def __repr__(self):
-        return f'<Rutas {self.nombre_de_ruta}>'
+        return f'<{self.nombre_de_ruta}>'
     
     def serialize(self):
         return {
@@ -86,7 +86,7 @@ class Por_Visitar(db.Model):
     ruta = db.relationship('Rutas')
 
     def __repr__(self):
-        return f'<Por_Visitar {self.ruta}>'
+        return f'<{self.ruta}>'
     
     def serialize(self):
         return {

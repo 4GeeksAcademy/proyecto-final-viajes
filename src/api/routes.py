@@ -188,3 +188,20 @@ def agregar_ciudad():
     else:
         return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
     
+@api.route("/ruta", methods=['POST'])
+@jwt_required()
+def agregar_ruta():
+    current_user = get_jwt_identity()
+    if current_user is not None:
+        ruta = json.loads(request.data)
+        nueva_ruta = Rutas(
+            nombre_de_ruta = ruta['nombre_de_ruta'],
+            distancia = ruta['distancia'],
+            tiempo_de_recorrido = ruta['tiempo_de_recorrido'],
+            id_ciudad = ruta['id_ciudad']
+        )
+        db.session.add(nueva_ruta)
+        db.session.commit()
+        return jsonify({"msg": "Ruta creada correctamente"}), 200
+    else:
+        return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
