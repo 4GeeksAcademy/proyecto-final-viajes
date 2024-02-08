@@ -18,6 +18,7 @@ const Layout = () => {
     return (
         <div>
             <BrowserRouter basename={basename}>
+
                     <Navbar />
                     <Routes>
                         <Route element={<InicioBusqueda />} path="/" />
