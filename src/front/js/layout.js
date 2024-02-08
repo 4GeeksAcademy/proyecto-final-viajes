@@ -1,8 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Formularioregistrarme } from "./pages/formularioregistrarme";
-import { Formularioiniciarsesion } from "./pages/formularioiniciarsesion";
+import { InicioBusqueda } from "./pages/InicioBusqueda";
+import { GaleriaTours } from "./pages/GaleriaTours";
+import { MisRutas } from "./pages/MisRutas";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -17,15 +18,14 @@ const Layout = () => {
     return (
         <div>
             <BrowserRouter basename={basename}>
-               
+
                     <Navbar />
                     <Routes>
-                        <Route element={<Formularioregistrarme />} path="/1" />
-                        <Route element={<Formularioiniciarsesion />} path="/2" />
-                        <Route element={<h1>Not found!</h1>} />
+                        <Route element={<InicioBusqueda />} path="/" />
+                        <Route element={<GaleriaTours />} path="/tours" />
+                        <Route element={<MisRutas />} path="/misrutas" />
                     </Routes>
                     <Footer />
-                
             </BrowserRouter>
         </div>
     );
