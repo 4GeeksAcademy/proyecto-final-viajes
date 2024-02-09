@@ -20,17 +20,20 @@ const Jumbotron = () => {
                     </CarouselItem>
                 </Carousel>
                 <Form className="d-flex flex-column flex-md-row mt-3 mx-auto align-items-center justify-content-around">
-                    <FormGroup className="w-25">
+                    <FormGroup className="w-25 mb-2">
                         <FormSelect className="busqueda">
                             <option>PAIS</option>
                         </FormSelect>
                     </FormGroup>
-                    <FormGroup className="w-25">
+                    <FormGroup className="w-25 mb-2">
                         <FormSelect className="busqueda">
                             <option>CIUDAD</option>
                         </FormSelect>
                     </FormGroup>
-                    <Button variant="secondary" className="busqueda">BUSCAR</Button>
+                    <FormGroup className="w-25 mb-2">
+                        <Button variant="secondary" className="busqueda">BUSCAR</Button>
+                    </FormGroup>
+                    
                 </Form>
             </div>
             
