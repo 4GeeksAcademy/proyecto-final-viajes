@@ -1,54 +1,53 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			message: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			users: [],
+			paises: [],
+			ciudades: [],
+			rutas: [],
+			misRutas: []
+			
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
+			getUsers: async () => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}users`)
+					const data = await res.json()
+					setStore({users: data})
+				} catch (error) {
+					return error
 				}
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
+			getPaises: async () => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}paises`)
+					const data = await res.json()
+					setStore({paises: data})
+				} catch (error) {
+					return error
+				}
+			},
+			getCiudades: async () => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}ciudad`)
+					const data = await res.json()
+					setStore({ciudades: data})
+				} catch (error) {
+					return error
+				}
+			},
+			getRutas: async () => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}ruta`)
+					const data = await res.json()
+					setStore({rutas: data})
+				} catch (error) {
+					return error
+				}
+			}
 			}
 		}
-	};
 };
 
 export default getState;
