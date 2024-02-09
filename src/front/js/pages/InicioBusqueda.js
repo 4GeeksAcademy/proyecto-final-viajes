@@ -1,12 +1,13 @@
 import React from "react";
 import "../../styles/home.css";
+import Jumbotron from "../component/Jumbotron";
 
 export const InicioBusqueda = () => {
 
 	return (
 		<div className="bg-black">
 			{/* BUSQUEDA */}
-
+			<Jumbotron />
 
 
 			{/* HOMBRE CAMINANDO */}
