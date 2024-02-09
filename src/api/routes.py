@@ -168,6 +168,7 @@ def editar_eliminar_pais(pais_id):
         if request.method == 'PUT':
             body = json.loads(request.data)
             pais.nombre_de_pais = body['nombre_de_pais']
+            db.session.commit()
             return jsonify({"msg": "Pais modificado correctamente"}), 200
     else:
         return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
@@ -187,6 +188,27 @@ def agregar_ciudad():
         return jsonify({"msg": "Ciudad agregada correctamente"}), 200
     else:
         return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
+
+@api.route("/ciudad/<int:ciudad_id>", methods=['DELETE', 'PUT'])
+@jwt_required()
+def editar_eliminar_ciudad(ciudad_id):
+    current_user = get_jwt_identity()
+    if current_user is not None:
+        ciudad = Ciudad.query.filter_by(id = ciudad_id).first()
+        if request.method == 'DELETE':
+            db.session.delete(ciudad)
+            db.session.commit()
+            return jsonify({"msg": "La ciudad ha sido correctamente eliminada"}), 200
+        if request.method == 'PUT':
+            body = json.loads(request.data)
+            ciudad.nombre_de_ciudad = body['nombre_de_ciudad']
+            ciudad.id_pais = body['id_pais']
+            db.session.commit()
+            return jsonify({"msg": "Ciudad modificada correctamente"}), 200
+    else:
+        return jsonify({"msg": "No estas autorizado para realizar esto"}), 401
+
+
     
 @api.route("/ruta", methods=['POST'])
 @jwt_required()
@@ -205,3 +227,4 @@ def agregar_ruta():
         return jsonify({"msg": "Ruta creada correctamente"}), 200
     else:
         return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
+
