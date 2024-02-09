@@ -1,9 +1,18 @@
 import React from "react";
+import { Form, FormGroup, Image } from "react-bootstrap";
 
 const Jumbotron = () => {
     return (
         <>
-            <h1>Desde Jumbotron</h1>
+            <div className="w-75 mx-auto">
+                
+                <Form>
+                    <FormGroup>
+
+                    </FormGroup>
+                </Form>
+            </div>
+            
         </>
     )
 }
