@@ -12,7 +12,7 @@ export const InicioBusqueda = () => {
 
 			{/* HOMBRE CAMINANDO */}
 			<figure className="text-center py-5">
-				<i class="fa-solid fa-person-walking text-light display-2"></i>
+				<i className="fa-solid fa-person-walking text-light display-2"></i>
 				<blockquote className="blockquote text-light py-4">
 					<p className="menu">"Hacemos tu viaje mas interesante"</p>
 				</blockquote>
