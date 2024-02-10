@@ -46,9 +46,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return error
 				}
 			},
-			getCiudadPorPais: async (pais) =>  
+			getCiudadPorPais: async (pais) => {
+				try {
+					const res = await fetch(process.env.BACKEND_URL + pais)
+					const data = await res.json()
+					return data
+				} catch (error) {
+					return error
+				}
 			}
 		}
+	}
 };
 
-export default getState;
+export default getState
