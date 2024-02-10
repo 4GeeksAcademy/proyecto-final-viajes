@@ -95,7 +95,6 @@
     padding-top: 7px;
 }
 
-
 .button, input, optgroup, select, textarea {
     margin-top: 10px;
     font-family: inherit;
@@ -103,6 +102,7 @@
     line-height: inherit;
     width: 30px;
     height: 30px;
+}
 
 .busqueda {
     width: 165px;
@@ -110,5 +110,92 @@
     font-weight: 500;
     letter-spacing: 5px;
     border-radius: 10px;
+}
 
+.btn-secondary {
+    color: #fff;
+    background-color: #000000;
+    /* border: 4px; */
+    border-color: #fdfeff;
+    /* border: 5px; */
+    border-radius: 14px;
+    font-size: 20px;
+}
+
+.modal-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 145%;
+    pointer-events: auto;
+    background-color: black;
+    background-clip: padding-box;
+    border: 3px solid rgba(0,0,0,.2);
+    border-radius: 1.3rem;
+    outline: 0;
+    border-color: antiquewhite;
+    align-content: center;
+    justify-content: center;
+}
+
+.modal-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+    flex-wrap: nowrap;
+}
+
+.h4, h4 {
+    padding-left: 8px;
+    font-size: 31px;
+    color: antiquewhite;
+}
+
+.modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 2rem;
+    color: antiquewhite;
+    font-size: 17px;
+}
+
+input[type="checkbox"] {
+    margin-left: 175px;
+    appearance: none;
+    -webkit-appearance: none;
+    height: 70px;
+    width: 70px;
+    background-color: gray;
+    border-radius: 100px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type="checkbox"]:after {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f00c";
+    font-size: 50px;
+    color:#000000;
+    display: none;
+}
+
+input[type="checkbox"]:hover {
+    background-color: #8f8181;
+}
+
+input[type="checkbox"]:checked {
+    background-color: white;
+
+}
+
+input[type="checkbox"]:checked:after {
+    display: block;
 }
