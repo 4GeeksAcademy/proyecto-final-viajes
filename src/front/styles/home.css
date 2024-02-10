@@ -95,10 +95,20 @@
     padding-top: 7px;
 }
 
+
+.button, input, optgroup, select, textarea {
+    margin-top: 10px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 30px;
+    height: 30px;
+
 .busqueda {
     width: 165px;
     height: 42px;
     font-weight: 500;
     letter-spacing: 5px;
     border-radius: 10px;
+
 }
