@@ -98,6 +98,14 @@ def handle_ciudad():
     response_body = list(map(lambda ciudad: ciudad.serialize(), ciudad))
     return jsonify(response_body), 200
 
+@api.route("/ciudad/<int:pais_id>", methods=['GET'])
+def ciudad_por_pais(pais_id):
+    ciudad = Ciudad.query.filter_by(id_pais = pais_id)
+    if ciudad == []:
+        return jsonify({"msg": "No existen ciudades para mostrar"}), 404
+    response_body = list(map(lambda ciudad: ciudad.serialize(), ciudad))
+    return jsonify(response_body), 200
+
 @api.route("/ruta", methods=['GET'])
 def handle_rutas():
     ruta = Rutas.query.all()
@@ -197,7 +205,7 @@ def agregar_ciudad():
     else:
         return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
 
-@api.route("/ciudad/<int:ciudad_id>", methods=['DELETE', 'PUT', 'GET'])
+@api.route("/ciudad/<int:ciudad_id>", methods=['DELETE', 'PUT'])
 @jwt_required()
 def editar_eliminar_ciudad(ciudad_id):
     current_user = get_jwt_identity()
