@@ -45,7 +45,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					return error
 				}
-			}
+			},
+			getCiudadPorPais: async (pais) =>  
 			}
 		}
 };

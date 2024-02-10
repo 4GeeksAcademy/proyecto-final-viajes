@@ -6,16 +6,8 @@ const Jumbotron = () => {
     const { store, actions } = useContext(Context)
     const [pais, setPais] = useState(null)
     const handleSelected = (e) => {
-        console.log(e)
+        console.log(e.target.value)
     }
-    const getAll = () => {
-        actions.getRutas()
-        actions.getPaises()
-        actions.getCiudades()
-    }
-    useEffect(() => {
-        getAll()
-    }, [])
     return (
         <>
             <div className="w-75 mx-auto pt-3">
@@ -31,10 +23,10 @@ const Jumbotron = () => {
                 </Carousel>
                 <Form className="d-flex flex-column flex-md-row mt-3 mx-auto align-items-center justify-content-around">
                     <FormGroup className="w-25 mb-2">
-                        <FormSelect className="busqueda">
+                        <FormSelect onChange={handleSelected} className="busqueda">
                             <option>PAIS</option>
                             {store.paises.map((pais, id) => (
-                                <option key={id} onSelect={e => console.log(e)}>{pais.nombre_de_pais}</option>
+                                <option key={id}  value={pais.id}>{pais.nombre_de_pais}</option>
                             ))}
                         </FormSelect>
                     </FormGroup>
@@ -49,7 +41,6 @@ const Jumbotron = () => {
                     <FormGroup className="w-25 mb-2">
                         <Button variant="secondary" className="busqueda">BUSCAR</Button>
                     </FormGroup>
-                    
                 </Form>
             </div>
             
