@@ -6,7 +6,8 @@ const Jumbotron = () => {
     const { store, actions } = useContext(Context)
     const [pais, setPais] = useState(null)
     const handleSelected = (e) => {
-        console.log(e.target.value)
+        actions.getCiudadPorPais(e.target.value)
+        console.log(store.ciudadesPorPais)
     }
     return (
         <>
