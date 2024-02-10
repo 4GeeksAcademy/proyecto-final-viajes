@@ -60,7 +60,8 @@ class Ciudad(db.Model):
 class Rutas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre_de_ruta = db.Column(db.String(45), unique=False, nullable=False)
-    distancia = db.Column(db.Integer, unique=False, nullable=False)
+    distancia = db.Column(db.String(10), unique=False, nullable=False)
+    imagen = db.Column(db.String(400), unique=False, nullable=True)
     tiempo_de_recorrido = db.Column(db.String(20), unique=False, nullable=False)
     id_ciudad = db.Column(db.Integer, db.ForeignKey('ciudad.id'))
     ciudad = db.relationship('Ciudad')
@@ -74,6 +75,7 @@ class Rutas(db.Model):
             "nombre_de_ruta": self.nombre_de_ruta,
             "distancia": self.distancia,
             "tiempo_de_recorrido": self.tiempo_de_recorrido,
+            "imagen": self.imagen,
             "id_ciudad": self.id_ciudad
         }
     
