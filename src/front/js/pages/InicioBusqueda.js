@@ -56,8 +56,38 @@ export const InicioBusqueda = () => {
 			{/* PLANES */}
 			<p className="servicios menu text-light">PLANES</p>
 
-			
+			<div className="container-fluid row menu ">
+				{/* <div className="col-1">
 
+				</div> */}
+				<div className="col-3 border border-3 border-white mx-5 rounded my-5">
+					<div className="bg-black text-light text-center mes rounded">
+						1 MES
+					</div>
+					<div className="bg-white text-center mensualidad rounded-bottom">
+						7,99 $ / AL MES
+					</div>
+				</div>
+				<div className="col-3 border border-3 border-white mx-5 rounded my-5">
+					<div className="bg-black text-light text-center mes rounded">
+						1 MES
+					</div>
+					<div className="bg-white text-center mensualidad rounded-bottom">
+						7,99 $ / AL MES
+					</div>
+				</div>
+				<div className="col-3 border border-3 border-white mx-5 rounded my-5">
+					<div className="bg-black text-light text-center mes rounded">
+						1 MES
+					</div>
+					<div className="bg-white text-center mensualidad rounded-bottom">
+						7,99 $ / AL MES
+					</div>
+				</div>
+				{/* <div className="col-1">
+
+				</div> */}
+			</div>
 		</div>
 	);
 };
