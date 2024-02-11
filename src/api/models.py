@@ -11,6 +11,8 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     fecha_de_registro = db.Column(db.String(10), unique=False, nullable=False)
     pais_de_residencia = db.Column(db.String(45), unique=False, nullable=False)
+    rol = db.column(db.Integer)
+    #0 = user, 1 = admin
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -24,7 +26,8 @@ class User(db.Model):
             "email": self.email,
             "edad": self.edad,
             "fecha_de_registro": self.fecha_de_registro,
-            "pais_de_residencia": self.pais_de_residencia
+            "pais_de_residencia": self.pais_de_residencia,
+            "rol": self.rol
             # do not serialize the password, its a security breach
         }
     
