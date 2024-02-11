@@ -63,11 +63,11 @@ export const GaleriaTours = () => {
 
 			{/* MODAL */}
 
-			<Modal show={show} onHide={handleClose} >
-				<Modal.Header closeButton>
-					<Modal.Title className="d-flex justify-content-center">PLAZA MAYOR</Modal.Title>
+			<Modal show={show} onHide={handleClose} className="row">
+				<Modal.Header>
+					<Modal.Title >PLAZA MAYOR</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>
+				<Modal.Body className="col-6">
 					L o r e m i p s u m d o l o r s i t a m e t ,
 					c o n s e c t e t u r a d i p i s c i n g e l i t , s e d
 					d o e i u s m o d t e m p o r i n c i d i d u n t
@@ -85,7 +85,7 @@ export const GaleriaTours = () => {
 					l a b o r u m .
 				</Modal.Body>
 				<Modal.Footer className="d-flex justify-content-center">
-					<Button variant="secondary" onClick={handleClose} >
+					<Button variant="secondary" onClick={handleClose}>
 						Close
 					</Button>
 				</Modal.Footer>
