@@ -5,7 +5,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			paises: [],
 			ciudades: [],
 			rutas: [],
-			misRutas: []
+			misRutas: [],
+			ciudadesPorPais: []
 			
 		},
 		actions: {
@@ -14,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const res = await fetch(`${process.env.BACKEND_URL}users`)
 					const data = await res.json()
-					setStore({users: data})
+					setStore({ciudadesPorPais: data})
 				} catch (error) {
 					return error
 				}
@@ -50,7 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const res = await fetch(process.env.BACKEND_URL + pais)
 					const data = await res.json()
-					return data
+					setStore({ciudadesPorPais: data})
 				} catch (error) {
 					return error
 				}
