@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import "../../styles/home.css";
 
-export const Formularioregistrarme = () => {
+export const Registrarme = () => {
 	
 
 	return (
