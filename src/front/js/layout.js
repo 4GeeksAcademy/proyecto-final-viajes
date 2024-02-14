@@ -5,6 +5,7 @@ import { InicioBusqueda } from "./pages/InicioBusqueda";
 import { GaleriaTours } from "./pages/GaleriaTours";
 import { MisRutas } from "./pages/MisRutas";
 import  {Iniciarsesion} from "./pages/Iniciarsesion";
+import {Registrarme} from "./pages/Registrarme";
 import injectContext from "./store/appContext";
 
 import { Footer } from "./component/footer";
@@ -26,6 +27,7 @@ const Layout = () => {
                         <Route element={<GaleriaTours />} path="/tours" />
                         <Route element={<MisRutas />} path="/misrutas" />
                         <Route element={<Iniciarsesion />} path="/iniciarsesion" />
+                        <Route element={<Registrarme />} path="/registrarme" />
                     </Routes>
                     <Footer />
             </BrowserRouter>
