@@ -25,29 +25,29 @@ export const InicioBusqueda = () => {
 			<div className="card-group row menu mx-auto py-5">
 				<div className="col-4 d-flex servicio1">
 					<div className="card bg-black">
-						<img src="https://media.istockphoto.com/id/1285957020/es/foto/explosi%C3%B3n-de-una-bombilla-el%C3%A9ctrica-tradicional-disparo-tomado-a-alta-velocidad.jpg?s=612x612&w=0&k=20&c=TC2l24YAi38mV1AYLAX0vVz3GLJPqop8b_g_ZUD-DyM=" className="card-img-top border border-white " alt="fotico" />
+						<img src="https://img.freepik.com/fotos-premium/busqueda-datos_441797-9884.jpg" className="card-img-top border border-white " alt="fotico" />
 						<div className="card-body">
-							<h5 className="card-title text-center text-light">ORGANIZAMOS</h5>
-							<p className="card-text text-light">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+							<h5 className="card-title text-light">BUSCA</h5>
+							<p className="card-text text-light">El pais y la ciudad de tu elección.</p>
 						</div>
 					</div>
 				</div>
 
 				<div className="col-4 d-flex servicio2">
 					<div className="card bg-black">
-						<img src="https://media.istockphoto.com/id/1285957020/es/foto/explosi%C3%B3n-de-una-bombilla-el%C3%A9ctrica-tradicional-disparo-tomado-a-alta-velocidad.jpg?s=612x612&w=0&k=20&c=TC2l24YAi38mV1AYLAX0vVz3GLJPqop8b_g_ZUD-DyM=" className="card-img-top border border-white" alt="fotico" />
+						<img src="https://img.freepik.com/vector-premium/concepto-forma-eleccion_165488-2881.jpg" className="card-img-top border border-white" alt="fotico" />
 						<div className="card-body">
-							<h5 className="card-title text-center text-light">SERVICIO 1</h5>
-							<p className="card-text text-light">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+							<h5 className="card-title text-light">ELIGE O GUARDA</h5>
+							<p className="card-text text-light">Entre una serie de tours preestablecidos para tu comodidad.</p>
 						</div>
 					</div>
 				</div>
 				<div className="col-4 d-flex servicio3">
 					<div className="card bg-black">
-						<img src="https://media.istockphoto.com/id/1285957020/es/foto/explosi%C3%B3n-de-una-bombilla-el%C3%A9ctrica-tradicional-disparo-tomado-a-alta-velocidad.jpg?s=612x612&w=0&k=20&c=TC2l24YAi38mV1AYLAX0vVz3GLJPqop8b_g_ZUD-DyM=" className="card-img-top border border-white" alt="fotico" />
+						<img src="https://blogs.incarail.com/hubfs/tips-para-disfrutar-tus-vacaciones.jpg" className="card-img-top border border-white" alt="fotico" />
 						<div className="card-body">
-							<h5 className="card-title text-center text-light">SERVICIO 1</h5>
-							<p className="card-text text-light">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+							<h5 className="card-title text-light">DISFRUTA</h5>
+							<p className="card-text text-light">Y pasa un excelente viaje!</p>
 						</div>
 					</div>
 				</div>
@@ -63,23 +63,23 @@ export const InicioBusqueda = () => {
 						1 MES
 					</div>
 					<div className="bg-white text-center mensualidad rounded-bottom">
-						7,99 $ / AL MES
+						1,99 $ / AL MES
 					</div>
 				</div>
 				<div className="col-3 border border-3 border-white mx-5 redondeado my-5">
 					<div className="bg-black text-light text-center mes redondeado">
-						1 MES
+						3 MESES
 					</div>
 					<div className="bg-white text-center mensualidad rounded-bottom">
-						7,99 $ / AL MES
+						4,99 $ / AL MES
 					</div>
 				</div>
 				<div className="col-3 border border-3 border-white mx-5 redondeado my-5">
 					<div className="bg-black text-light text-center mes redondeado">
-						1 MES
+						1 AÑO
 					</div>
 					<div className="bg-white text-center mensualidad rounded-bottom">
-						7,99 $ / AL MES
+						19,99 $ / AL MES
 					</div>
 				</div>
 				
