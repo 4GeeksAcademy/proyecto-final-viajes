@@ -7,6 +7,8 @@ import ModalHeader from "react-bootstrap";
 import ModalFooter from "react-bootstrap";
 import ModalBody from "react-bootstrap";
 import ModalTitle from "react-bootstrap";
+import { Row } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 
 export const GaleriaTours = () => {
@@ -67,22 +69,32 @@ export const GaleriaTours = () => {
 				<Modal.Header>
 					<Modal.Title >PLAZA MAYOR</Modal.Title>
 				</Modal.Header>
-				<Modal.Body className="col-6">
-					L o r e m i p s u m d o l o r s i t a m e t ,
-					c o n s e c t e t u r a d i p i s c i n g e l i t , s e d
-					d o e i u s m o d t e m p o r i n c i d i d u n t
-					u t l a b o r e e t d o l o r e m a g n a
-					a l i q u a . U t e n i m a d m i n i m
-					v e n i a m , q u i s q u i o f f i c i a
-					d e s e r u n t m o l l i t a n i m i d e s t
-					l a b o r u m . L o r e m i p s u m d o l o r s i t
-					a m e t , c o n s e c t e t u r a d i p i s c i n g
-					e l i t , s e d d o e i u s m o d t e m p o r
-					i n c i d i d u n t u t l a b o r e e t d o l o r e
-					m a g n a a l i q u a . U t e n i m a d m i n i m
-					v e n i a m , q u i s q u i o f f i c i a
-					d e s e r u n t m o l l i t a n i m i d e s t
-					l a b o r u m .
+				<Modal.Body>
+					<Row>
+						<Col>
+							L o r e m i p s u m d o l o r s i t a m e t ,
+							c o n s e c t e t u r a d i p i s c i n g e l i t , s e d
+							d o e i u s m o d t e m p o r i n c i d i d u n t
+							u t l a b o r e e t d o l o r e m a g n a
+							a l i q u a . U t e n i m a d m i n i m
+							v e n i a m , q u i s q u i o f f i c i a
+							d e s e r u n t m o l l i t a n i m i d e s t
+							l a b o r u m . L o r e m i p s u m d o l o r s i t
+							a m e t , c o n s e c t e t u r a d i p i s c i n g
+							e l i t , s e d d o e i u s m o d t e m p o r
+							i n c i d i d u n t u t l a b o r e e t d o l o r e
+							m a g n a a l i q u a . U t e n i m a d m i n i m
+							v e n i a m , q u i s q u i o f f i c i a
+							d e s e r u n t m o l l i t a n i m i d e s t
+							l a b o r u m .
+
+						</Col>
+						<Col>
+							<div className="bg-white">
+
+							</div>
+						</Col>
+					</Row>
 				</Modal.Body>
 				<Modal.Footer className="d-flex justify-content-center">
 					<Button variant="secondary" onClick={handleClose}>

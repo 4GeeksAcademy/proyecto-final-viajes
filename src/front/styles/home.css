@@ -201,3 +201,29 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:checked:after {
     display: block;
 }
+
+.mensualidad {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding: 15px;
+    font-size: 25px;
+}
+
+.mes {
+    padding: 75px;
+    font-size: 32px;
+}
+
+.rounded {
+    border-radius: 2rem!important;
+}
+
+.rounded-bottom {
+    border-bottom-right-radius: 1.7rem!important;
+    border-bottom-left-radius: 1.7rem!important;
+}
+
+.my-5 {
+    margin-top: 3rem!important;
+    margin-bottom: 7rem!important;
+}
