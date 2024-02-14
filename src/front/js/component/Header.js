@@ -7,7 +7,7 @@ const Header = () => {
             <Container className="d-flex align-items-center justify-content-between">
                 <div>
                     <NavbarBrand href="/" className="d-flex p-3 align-items-center justify-content-between">
-                        <Image src="https://i.ibb.co/Hq7WXps/logo-PAturistear-transparente-Editado.png" alt="Lohotipo" width={"100px"}/>
+                        <Image src="https://i.ibb.co/DRhxdbr/logo.png" alt="Lohotipo" width={"100px"}/>
                         <h4 className="nombre menu text-light">PaTuristear</h4>
                     </NavbarBrand>
                 </div>
