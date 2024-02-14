@@ -102,8 +102,7 @@
     line-height: inherit;
     width: 30px;
     height: 30px;
-
-
+}
 
 .busqueda {
     width: 165px;
@@ -227,7 +226,6 @@ input[type="checkbox"]:checked:after {
     margin-bottom: 7rem!important;
 }
 
-<<<<<<<<< Temporary merge branch 1
 .formDiv{
 	height: 100%;
 	width: 100%;
@@ -257,7 +255,8 @@ input[type="checkbox"]:checked:after {
 	.form{
 		width: 90%;
 	}
-=========
+}
+
 .carrusel {
     width: 195px;
     height: 130px;
@@ -270,4 +269,3 @@ input[type="checkbox"]:checked:after {
     justify-content: space-between;
     margin-top: 90px;
 }
->>>>>>>>> Temporary merge branch 2
