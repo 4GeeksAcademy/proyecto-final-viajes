@@ -270,7 +270,7 @@ input[type="checkbox"]:checked:after {
     font-size: 32px;
 }
 
-.rounded {
+.redondeado {
     border-radius: 2rem!important;
 }
 
@@ -282,4 +282,17 @@ input[type="checkbox"]:checked:after {
 .my-5 {
     margin-top: 3rem!important;
     margin-bottom: 7rem!important;
+}
+
+.carrusel {
+    width: 195px;
+    height: 130px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+.iconos {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 90px;
 }
