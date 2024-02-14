@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Carousel, CarouselCaption, CarouselItem, Form, FormGroup, FormSelect, Image } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 const Jumbotron = () => {
     const { store, actions } = useContext(Context)
-    const [pais, setPais] = useState(null)
+    const [ciudades, setCiudades] = useState([])
     const handleSelected = (e) => {
         actions.getCiudadPorPais(e.target.value)
-        console.log(store.ciudadesPorPais)
     }
     return (
         <>
@@ -24,7 +23,7 @@ const Jumbotron = () => {
                 </Carousel>
                 <Form className="d-flex flex-column flex-md-row mt-3 mx-auto align-items-center justify-content-around">
                     <FormGroup className="w-25 mb-2">
-                        <FormSelect onChange={handleSelected} className="busqueda">
+                        <FormSelect onChange={e => handleSelected(e)} className="busqueda">
                             <option>PAIS</option>
                             {store.paises.map((pais, id) => (
                                 <option key={id}  value={pais.id}>{pais.nombre_de_pais}</option>

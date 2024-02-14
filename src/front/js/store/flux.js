@@ -6,7 +6,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			ciudades: [],
 			rutas: [],
 			misRutas: [],
-			ciudadesPorPais: []
+			ciudadesPorPais: [],
+			status: "pending"
 			
 		},
 		actions: {
@@ -49,8 +50,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getCiudadPorPais: async (pais) => {
 				try {
-					const res = await fetch(process.env.BACKEND_URL + pais)
+					const res = await fetch(process.env.BACKEND_URL + "ciudad_por_pais/" + pais)
 					const data = await res.json()
+					console.log(data)
 					setStore({ciudadesPorPais: data})
 				} catch (error) {
 					return error
