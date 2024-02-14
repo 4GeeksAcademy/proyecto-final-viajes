@@ -11,7 +11,7 @@ const Jumbotron = () => {
     return (
         <>
             <div className="w-75 mx-auto pt-3">
-                <Carousel className=" border border-light border-3 rounded">
+                <Carousel className=" border border-light border-5">
                     {store.rutas.map((ruta, id) => (
                         <CarouselItem key={id}>
                         <Image src={ruta.imagen} alt="España" width={"100%"} height={300} />
