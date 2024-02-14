@@ -18,7 +18,7 @@ export const MisRutas = () => {
 							<h5 className="card-title text-center text-light">PLAZA MAYOR, Madrid, España</h5>
 							<p className="card-text text-light pt-4">Distancia: </p>
 							<p className="card-text text-light">Tiempo: </p>
-							<input type="checkbox" id="check"/>
+							<input type="checkbox" id="check" className="border border-3"/>
 						</div>
 					</div>
 				</div>
