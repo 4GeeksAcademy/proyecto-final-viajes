@@ -102,7 +102,8 @@
     line-height: inherit;
     width: 30px;
     height: 30px;
-}
+
+
 
 .busqueda {
     width: 165px;
@@ -198,6 +199,63 @@ input[type="checkbox"]:checked {
 
 input[type="checkbox"]:checked:after {
     display: block;
+}
+  
+.mensualidad {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding: 15px;
+    font-size: 25px;
+}
+
+.mes {
+    padding: 75px;
+    font-size: 32px;
+}
+
+.rounded {
+    border-radius: 2rem!important;
+}
+
+.rounded-bottom {
+    border-bottom-right-radius: 1.7rem!important;
+    border-bottom-left-radius: 1.7rem!important;
+}
+
+.my-5 {
+    margin-top: 3rem!important;
+    margin-bottom: 7rem!important;
+}
+
+.formDiv{
+	height: 100%;
+	width: 100%;
+	font-size: 16px;
+	position: relative;
+    background-color: #000000;
+    color: #fff;
+    min-height: 100vh;
+}
+
+.form{
+	width: 500px;
+	/* border: 1px solid #E1E1E1; */
+	border-radius: 4px;
+	padding: 15px;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+    text-align: center;
+    background-color: #212529;
+    color: #fff;
+    margin: 1px;
+}
+
+@media (max-width: 400px){
+	.form{
+		width: 90%;
+	}
 }
 
 .mensualidad {
