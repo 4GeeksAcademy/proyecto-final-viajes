@@ -20,8 +20,8 @@ const Header = () => {
                     <NavbarCollapse id="basic-navbar-nav" className="justify-self-end">
                         <Nav>
                             <NavLink href="/" className="text-light px-4 menu">INICIO</NavLink>
-                            <NavLink href="/" className="text-light px-4 menu">REGISTRARME</NavLink>
-                            <NavLink href="/" className="text-light px-4 menu">INICIAR SESION</NavLink>
+                            <NavLink href="/registrarme" className="text-light px-4 menu">REGISTRARME</NavLink>
+                            <NavLink href="/iniciarsesion" className="text-light px-4 menu">INICIAR SESION</NavLink>
                         </Nav>
                     </NavbarCollapse>
                 </div>
