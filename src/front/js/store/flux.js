@@ -29,10 +29,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					const data = await res.json()
-					console.log(data)
-					setStore({token: data.token})
+					return true
 				} catch (error) {
-					return error
+					console.log(error)
+					return false
 				}
 			},
 			getPaises: async () => {
@@ -85,11 +85,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Content-Type": "application/json"
 						}
 					})
-					const data = await res.json()
-					console.log(data)
+					if(res.status == 200) {
+						const data = await res.json()
+					localStorage.setItem("token", data.token)
 					setStore({token: data.token})
+					return true
+					}
 				} catch (error) {
-					return error
+					console.log(error)
+					return false
 				}
 			}
 		}

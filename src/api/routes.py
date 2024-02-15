@@ -71,13 +71,14 @@ def handle_user_id(user_id):
 def login():
     email = request.json.get('email')
     password = request.json.get('password')
-    print(email, password)
     user = User.query.filter_by(email=email).first()
     # pw_hash = bcrypt.generate_password_hash(password)
     # user_pw = User.query.filter_by(password=pw_hash).first()
+    if user is None:
+        return jsonify({"msg": "El usuario no existe"}), 404
     exist = current_app.bcrypt.check_password_hash(user.password, password)
     # user_exist = User.query.filter_by(email=email, password=pw_hash).first()
-    if user and exist:
+    if email == user.email and exist:
         datos = {
             "email": email,
             "rol": user.rol,

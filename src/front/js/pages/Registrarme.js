@@ -1,6 +1,8 @@
 import React, { useContext, useState } from "react";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export const Registrarme = () => {
 	const [nombre, setNombre] = useState("")
@@ -10,6 +12,8 @@ export const Registrarme = () => {
 	const [password, setPassword] = useState("")
 	const [residencia, setresidencia] = useState("")
 	const {store, actions} = useContext(Context)
+	const navigate = useNavigate()
+
 	const user = {
 		nombre: nombre,
 		apellidos: apellidos,
@@ -19,12 +23,29 @@ export const Registrarme = () => {
 		pais_de_residencia: residencia,
 		is_active: true,
 		rol: 0,
-		fecha_de_registro: Date.getFullYear()
+		fecha_de_registro: "2024"
 	}
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
-		actions.createUser(user)
+		if(nombre != "" && apellidos != "" && email != "" && edad != "" && password != "" && residencia != "") {
+			let res = await actions.createUser(user)
+			if(res) {
+				navigate("/iniciarsesion")
+			}else {
+				Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Registro erroneo"
+                });
+			}
+		}else {
+			Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Todos los campos son obligatorios"
+			});
+		}
 	}
 
 	return (

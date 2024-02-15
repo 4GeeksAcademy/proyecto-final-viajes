@@ -11,7 +11,7 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     fecha_de_registro = db.Column(db.String(10), unique=False, nullable=False)
     pais_de_residencia = db.Column(db.String(45), unique=False, nullable=False)
-    rol = db.column(db.Integer)
+    rol = db.Column(db.Integer)
     #0 = user, 1 = admin
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
