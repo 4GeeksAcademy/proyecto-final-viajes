@@ -38,16 +38,6 @@ export const Iniciarsesion = () => {
 
 
             <p className="servicios menu text-light py-5">INICIAR SESION</p>
-
-            {/* <form className="form menu rounded-3">
-                <div class="mb-3 pb-3">
-                    <label for="email" class="form-label pb-2 fs-6">CORREO</label>
-                    <input type="email" class="form-control pb-2" id="email" aria-describedby="emailHelp" /> 
-                </div>
-                <div class="mb-3 pb-3">
-                    <label for="password" class="form-label pb-2 fs-6">CONTRASEÑA</label>
-                    <input type="password" class="form-control" id="password"/> */}
-
             <form onSubmit={e => handleSubmit(e)} className="form menu">
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">CORREO</label>

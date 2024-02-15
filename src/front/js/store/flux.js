@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			ciudades: [],
 			rutas: [],
 			misRutas: [],
+			tours: [],
 			token: ""
 		},
 		actions: {
@@ -62,6 +63,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return error
 				}
 			},
+			getRutasPorCiudad: async (id_ciudad) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}tour_por_ciudad/${id_ciudad}`)
+					const data = await res.json()
+					setStore({tours: data})
+				} catch (error) {
+					return error
+				}
+			},
 			getCiudadPorPais: async (pais) => {
 				try {
 					const res = await fetch(process.env.BACKEND_URL + "ciudad_por_pais/" + pais)
@@ -95,6 +105,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 					return false
 				}
+			},
+			crearPais: () => {
+				let token = localStorage.getItem("token")
+				// headers: {
+				// 	Authorization: "Bearer " + token
+				// }
 			}
 		}
 	}

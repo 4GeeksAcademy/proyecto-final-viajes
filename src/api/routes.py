@@ -122,6 +122,14 @@ def handle_rutas():
     response_body = list(map(lambda ruta: ruta.serialize(), ruta))
     return jsonify(response_body), 200
 
+@api.route("/tour_por_ciudad/<int:ciudad_id>", methods=['GET'])
+def tour_por_ciudad(ciudad_id):
+    ruta = Rutas.query.filter_by(id_ciudad = ciudad_id).all()
+    if ruta == []:
+        return jsonify({"msg": "No existen ciudades para mostrar"}), 404
+    response_body = list(map(lambda ruta: ruta.serialize(), ruta))
+    return jsonify(response_body), 200
+
 @api.route("/por_visitar", methods=['GET', 'POST'])
 def handle_por_visitar():
     if request.method == 'POST':
