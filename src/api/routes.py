@@ -28,7 +28,8 @@ def handle_users():
             password=pw_hash,
             fecha_de_registro=user['fecha_de_registro'],
             pais_de_residencia=user['pais_de_residencia'],
-            is_active=user['is_active']
+            is_active=user['is_active'],
+            rol=user['rol']
         )
         db.session.add(new_user)
         db.session.commit()
@@ -73,10 +74,17 @@ def login():
     user = User.query.filter_by(email=email).first()
     # pw_hash = bcrypt.generate_password_hash(password)
     # user_pw = User.query.filter_by(password=pw_hash).first()
+    if user is None:
+        return jsonify({"msg": "El usuario no existe"}), 404
     exist = current_app.bcrypt.check_password_hash(user.password, password)
     # user_exist = User.query.filter_by(email=email, password=pw_hash).first()
-    if user and exist:
-        access_token = create_access_token(identity=email)
+    if email == user.email and exist:
+        datos = {
+            "email": email,
+            "rol": user.rol,
+            "nombre": user.nombre
+        }
+        access_token = create_access_token(identity=datos)
         response_body = {"token": access_token}
         return jsonify(response_body), 200
     else:
@@ -111,6 +119,14 @@ def handle_rutas():
     ruta = Rutas.query.all()
     if ruta == []:
         return jsonify({"msg": "No hay rutas para mostrar"})
+    response_body = list(map(lambda ruta: ruta.serialize(), ruta))
+    return jsonify(response_body), 200
+
+@api.route("/tour_por_ciudad/<int:ciudad_id>", methods=['GET'])
+def tour_por_ciudad(ciudad_id):
+    ruta = Rutas.query.filter_by(id_ciudad = ciudad_id).all()
+    if ruta == []:
+        return jsonify({"msg": "No existen ciudades para mostrar"}), 404
     response_body = list(map(lambda ruta: ruta.serialize(), ruta))
     return jsonify(response_body), 200
 
