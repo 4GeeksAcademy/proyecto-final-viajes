@@ -24,7 +24,7 @@ const Layout = () => {
                     <Header />
                     <Routes>
                         <Route element={<InicioBusqueda />} path="/" />
-                        <Route element={<GaleriaTours />} path="/tours" />
+                        <Route element={<GaleriaTours />} path="/tours/:id" />
                         <Route element={<MisRutas />} path="/misrutas" />
                         <Route element={<Iniciarsesion />} path="/iniciarsesion" />
                         <Route element={<Registrarme />} path="/registrarme" />

@@ -103,11 +103,6 @@
     width: 30px;
     height: 30px;
 }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 6f1cd82498b771647cfc6f8f43e22615722e837d
 
 .busqueda {
     width: 165px;
@@ -204,6 +199,7 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:checked:after {
     display: block;
 }
+
   
 .mensualidad {
     margin-left: -12px;
@@ -258,6 +254,34 @@ input[type="checkbox"]:checked:after {
 	.form{
 		width: 90%;
 	}
+}   
+
+
+.mensualidad {
+    margin-left: -12px;
+    margin-right: -12px;
+    padding: 15px;
+    font-size: 25px;
+}
+
+.mes {
+    padding: 75px;
+    font-size: 32px;
+}
+
+
+.redondeado {
+    border-radius: 2rem!important;
+}
+
+.rounded-bottom {
+    border-bottom-right-radius: 1.7rem!important;
+    border-bottom-left-radius: 1.7rem!important;
+}
+
+.my-5 {
+    margin-top: 3rem!important;
+    margin-bottom: 7rem!important;
 }
 
 .carrusel {

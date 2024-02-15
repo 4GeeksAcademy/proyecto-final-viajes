@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Carousel, CarouselCaption, CarouselItem, Form, FormGroup, FormSelect, Image } from "react-bootstrap";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 const Jumbotron = () => {
     const { store, actions } = useContext(Context)
+    const [ciudadSeleccionada, setCiudadSeleccionada] = useState(undefined)
     const handleSelected = (e) => {
         actions.getCiudadPorPais(e.target.value)
     }
-    console.log(store.ciudadesPorPais)
+    const handleCiudadSeleccionada = (e) => {
+        setCiudadSeleccionada(e.target.value)
+    }
     return (
         <>
             <div className="w-75 mx-auto pt-3">
@@ -31,15 +35,17 @@ const Jumbotron = () => {
                         </FormSelect>
                     </FormGroup>
                     <FormGroup className="w-25 mb-2">
-                        <FormSelect className="busqueda">
+                        <FormSelect onChange={e => handleCiudadSeleccionada(e)} className="busqueda">
                             <option>CIUDAD</option>
                             {store.ciudades.map((ciudad, id) => (
-                                <option key={id}>{ciudad.nombre_de_ciudad}</option>
+                                <option value={ciudad.id} key={id}>{ciudad.nombre_de_ciudad}</option>
                             ))}
                         </FormSelect>
                     </FormGroup>
                     <FormGroup className="w-25 mb-2">
-                        <Button variant="secondary" className="busqueda">BUSCAR</Button>
+                        <Link to={"/tours/" + ciudadSeleccionada}>
+                            <Button variant="secondary" className="busqueda">BUSCAR</Button>
+                        </Link>
                     </FormGroup>
                 </Form>
             </div>

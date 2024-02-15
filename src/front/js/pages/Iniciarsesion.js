@@ -1,11 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/home.css";
+import { Image } from "react-bootstrap";
+import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
 
 export const Iniciarsesion = () => {
-	
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const { store, actions } = useContext(Context)
+    const navigate = useNavigate()
 
-	return (
-		<div className="bg-black">
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (email != "" && password != "") {
+            let response = await actions.login(email, password)
+            if (response) {
+                navigate("/")
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Nombre de usuario o contraseña incorrectos"
+                });
+            }
+        }else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Todos los campos son obligatorios"
+            });
+        }
 
             <p className="servicios menu text-light py-5">INICIAR SESION</p>
             
@@ -20,6 +44,7 @@ export const Iniciarsesion = () => {
                 </div>
                  <button type="submit" className="btn btn-secondary menu fs-6">INICIAR SESION</button>
             </form>
-		</div>
-	);
+        </div>
+
+    );
 };

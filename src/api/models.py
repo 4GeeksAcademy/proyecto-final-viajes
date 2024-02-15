@@ -11,7 +11,7 @@ class User(db.Model):
     password = db.Column(db.String(80), unique=False, nullable=False)
     fecha_de_registro = db.Column(db.String(10), unique=False, nullable=False)
     pais_de_residencia = db.Column(db.String(45), unique=False, nullable=False)
-    rol = db.column(db.Integer)
+    rol = db.Column(db.Integer)
     #0 = user, 1 = admin
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
@@ -65,6 +65,7 @@ class Rutas(db.Model):
     nombre_de_ruta = db.Column(db.String(45), unique=False, nullable=False)
     distancia = db.Column(db.String(10), unique=False, nullable=False)
     imagen = db.Column(db.String(400), unique=False, nullable=True)
+    descripcion = db.Column(db.String(1000))
     tiempo_de_recorrido = db.Column(db.String(20), unique=False, nullable=False)
     id_ciudad = db.Column(db.Integer, db.ForeignKey('ciudad.id'))
     ciudad = db.relationship('Ciudad')
@@ -79,7 +80,8 @@ class Rutas(db.Model):
             "distancia": self.distancia,
             "tiempo_de_recorrido": self.tiempo_de_recorrido,
             "imagen": self.imagen,
-            "id_ciudad": self.id_ciudad
+            "id_ciudad": self.id_ciudad,
+            "descripcion": self.descripcion
         }
     
 class Por_Visitar(db.Model):

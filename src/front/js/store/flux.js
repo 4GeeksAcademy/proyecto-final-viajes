@@ -5,7 +5,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			paises: [],
 			ciudades: [],
 			rutas: [],
-			misRutas: []
+			misRutas: [],
+			tours: [],
+			token: ""
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -16,6 +18,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({users: data})
 				} catch (error) {
 					return error
+				}
+			},
+			createUser: async (datos) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}users`, {
+						method: 'POST',
+						body: JSON.stringify(datos),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await res.json()
+					return true
+				} catch (error) {
+					console.log(error)
+					return false
 				}
 			},
 			getPaises: async () => {
@@ -45,6 +63,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return error
 				}
 			},
+			getRutasPorCiudad: async (id_ciudad) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}tour_por_ciudad/${id_ciudad}`)
+					const data = await res.json()
+					setStore({tours: data})
+				} catch (error) {
+					return error
+				}
+			},
 			getCiudadPorPais: async (pais) => {
 				try {
 					const res = await fetch(process.env.BACKEND_URL + "ciudad_por_pais/" + pais)
@@ -54,6 +81,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					return error
 				}
+			},
+			login: async (email, password) => {
+				const body = {
+					email: email,
+					password: password
+				}
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "login", {
+						method: 'POST',
+						body: JSON.stringify(body),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					if(res.status == 200) {
+						const data = await res.json()
+					localStorage.setItem("token", data.token)
+					setStore({token: data.token})
+					return true
+					}
+				} catch (error) {
+					console.log(error)
+					return false
+				}
+			},
+			crearPais: () => {
+				let token = localStorage.getItem("token")
+				// headers: {
+				// 	Authorization: "Bearer " + token
+				// }
 			}
 		}
 	}
