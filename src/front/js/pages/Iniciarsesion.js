@@ -35,8 +35,6 @@ export const Iniciarsesion = () => {
 
     return (
         <div className="bg-black">
-
-
             <p className="servicios menu text-light py-5">INICIAR SESION</p>
             <form onSubmit={e => handleSubmit(e)} className="form menu">
                 <div className="mb-3">
