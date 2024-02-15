@@ -1,9 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/home.css";
+import { Image } from "react-bootstrap";
+import { Context } from "../store/appContext";
 
 export const Iniciarsesion = () => {
-	
+	const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const {store, actions} = useContext(Context)
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        actions.login(email, password)
+    }
+   
 	return (
 		<div className="bg-black">
 
@@ -22,11 +31,11 @@ export const Iniciarsesion = () => {
 			{/* <form className="form menu">
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">CORREO</label>
-                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" /> 
+                    <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="form-control" id="email" aria-describedby="emailHelp" /> 
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">CONTRASEÑA</label>
-                    <input type="password" className="form-control" id="password"/>
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="form-control" id="password"/>
                 </div>
                  <button type="submit" className="btn btn-secondary menu fs-6">INICIAR SESION</button> */}
                  </div>

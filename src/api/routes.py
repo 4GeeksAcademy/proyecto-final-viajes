@@ -28,7 +28,8 @@ def handle_users():
             password=pw_hash,
             fecha_de_registro=user['fecha_de_registro'],
             pais_de_residencia=user['pais_de_residencia'],
-            is_active=user['is_active']
+            is_active=user['is_active'],
+            rol=user['rol']
         )
         db.session.add(new_user)
         db.session.commit()
@@ -70,13 +71,19 @@ def handle_user_id(user_id):
 def login():
     email = request.json.get('email')
     password = request.json.get('password')
+    print(email, password)
     user = User.query.filter_by(email=email).first()
     # pw_hash = bcrypt.generate_password_hash(password)
     # user_pw = User.query.filter_by(password=pw_hash).first()
     exist = current_app.bcrypt.check_password_hash(user.password, password)
     # user_exist = User.query.filter_by(email=email, password=pw_hash).first()
     if user and exist:
-        access_token = create_access_token(identity=email)
+        datos = {
+            "email": email,
+            "rol": user.rol,
+            "nombre": user.nombre
+        }
+        access_token = create_access_token(identity=datos)
         response_body = {"token": access_token}
         return jsonify(response_body), 200
     else:
