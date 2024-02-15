@@ -19,7 +19,7 @@ export const Iniciarsesion = () => {
                     <label for="password" class="form-label pb-2 fs-6">CONTRASEÑA</label>
                     <input type="password" class="form-control" id="password"/>
             
-			<form className="form menu">
+			{/* <form className="form menu">
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">CORREO</label>
                     <input type="email" className="form-control" id="email" aria-describedby="emailHelp" /> 
@@ -28,8 +28,10 @@ export const Iniciarsesion = () => {
                     <label htmlFor="password" className="form-label">CONTRASEÑA</label>
                     <input type="password" className="form-control" id="password"/>
                 </div>
-                 <button type="submit" className="btn btn-secondary menu fs-6">INICIAR SESION</button>
+                 <button type="submit" className="btn btn-secondary menu fs-6">INICIAR SESION</button> */}
+                 </div>
             </form>
 		</div>
+        
 	);
 };
