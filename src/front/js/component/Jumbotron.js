@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Button, Carousel, CarouselCaption, CarouselItem, Form, FormGroup, FormSelect, Image } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
 const Jumbotron = () => {
     const { store, actions } = useContext(Context)
-    const [ciudades, setCiudades] = useState([])
     const handleSelected = (e) => {
         actions.getCiudadPorPais(e.target.value)
     }
+    console.log(store.ciudadesPorPais)
     return (
         <>
             <div className="w-75 mx-auto pt-3">
@@ -43,7 +43,6 @@ const Jumbotron = () => {
                     </FormGroup>
                 </Form>
             </div>
-            
         </>
     )
 }

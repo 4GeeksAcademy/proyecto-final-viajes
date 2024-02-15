@@ -5,10 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			paises: [],
 			ciudades: [],
 			rutas: [],
-			misRutas: [],
-			ciudadesPorPais: [],
-			status: "pending"
-			
+			misRutas: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -16,7 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const res = await fetch(`${process.env.BACKEND_URL}users`)
 					const data = await res.json()
-					setStore({ciudadesPorPais: data})
+					setStore({users: data})
 				} catch (error) {
 					return error
 				}
@@ -53,7 +50,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const res = await fetch(process.env.BACKEND_URL + "ciudad_por_pais/" + pais)
 					const data = await res.json()
 					console.log(data)
-					setStore({ciudadesPorPais: data})
+					setStore({ciudades: data})
 				} catch (error) {
 					return error
 				}
