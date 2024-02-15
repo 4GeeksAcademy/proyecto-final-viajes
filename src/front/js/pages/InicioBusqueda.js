@@ -21,30 +21,30 @@ export const InicioBusqueda = () => {
 			{/* SERVICIOS */}
 			<p className="servicios menu text-light">SERVICIOS</p>
 
-
 			<div className="card-group row menu mx-auto py-5">
 				<div className="col-4 d-flex servicio1">
 					<div className="card bg-black">
-						<img src="https://img.freepik.com/fotos-premium/busqueda-datos_441797-9884.jpg" className="card-img-top border border-white " alt="fotico" />
+						<img src="https://i.ibb.co/3c5BNGH/pexels-monstera-production-7412098.jpg" className="card-img-top border border-2 border-white rounded-1" alt="fotico" />
 						<div className="card-body">
 							<h5 className="card-title text-light">BUSCA</h5>
-							<p className="card-text text-light">El pais y la ciudad de tu elección.</p>
+							<p className="card-text text-light">El pais y la ciudad de tu preferencia.</p>
 						</div>
 					</div>
 				</div>
 
 				<div className="col-4 d-flex servicio2">
 					<div className="card bg-black">
-						<img src="https://img.freepik.com/vector-premium/concepto-forma-eleccion_165488-2881.jpg" className="card-img-top border border-white" alt="fotico" />
+						<img src="https://i.ibb.co/jGbxYZ7/pexels-andrea-piacquadio-826349.jpg" className="card-img-top border border-2 border-white rounded-1" alt="fotico" />
+						
 						<div className="card-body">
 							<h5 className="card-title text-light">ELIGE O GUARDA</h5>
-							<p className="card-text text-light">Entre una serie de tours preestablecidos para tu comodidad.</p>
+							<p className="card-text text-light">Entre una serie de tours preestablecidos para garantizar tu comodidad.</p>
 						</div>
 					</div>
 				</div>
 				<div className="col-4 d-flex servicio3">
 					<div className="card bg-black">
-						<img src="https://blogs.incarail.com/hubfs/tips-para-disfrutar-tus-vacaciones.jpg" className="card-img-top border border-white" alt="fotico" />
+						<img src="https://i.ibb.co/0J1BtSW/pexels-andrea-piacquadio-837129.jpg" className="card-img-top border border-2 border-white" alt="fotico" />
 						<div className="card-body">
 							<h5 className="card-title text-light">DISFRUTA</h5>
 							<p className="card-text text-light">Y pasa un excelente viaje!</p>

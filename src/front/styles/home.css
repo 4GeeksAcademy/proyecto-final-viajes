@@ -209,10 +209,10 @@ input[type="checkbox"]:checked:after {
 
 .mes {
     padding: 75px;
-    font-size: 32px;
+    font-size: 28px;
 }
 
-.rounded {
+.redondeado {
     border-radius: 2rem!important;
 }
 
@@ -236,11 +236,9 @@ input[type="checkbox"]:checked:after {
     min-height: 100vh;
 }
 
-.form{
-	width: 500px;
-	/* border: 1px solid #E1E1E1; */
-	border-radius: 4px;
-	padding: 15px;
+.form {
+    width: 520px;
+    padding: 45px;
 	position: relative;
 	top: 50%;
 	left: 50%;
