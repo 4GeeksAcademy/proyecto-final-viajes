@@ -2,7 +2,7 @@
     font-family: 'Inter', sans-serif;
 }
 
-.navbar {
+/* .navbar {
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -10,7 +10,7 @@
     justify-content: space-between;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-}
+} */
 
 .px-4 {
     padding-right: 2.5rem!important;
@@ -103,6 +103,11 @@
     width: 30px;
     height: 30px;
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6f1cd82498b771647cfc6f8f43e22615722e837d
 
 .busqueda {
     width: 165px;
