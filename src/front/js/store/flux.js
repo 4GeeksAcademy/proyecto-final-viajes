@@ -156,13 +156,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 						method: 'DELETE'
 					})
 					const data = await res.json()
+					getActions().getMisRutas(id_usuario)
 					return data
 				} catch (error) {
 					console.log(error)
 				}
 			},
-			crearPais: () => {
+			crearPais: async (nombre) => {
 				let token = localStorage.getItem("token")
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}paises`, {
+						method: 'POST',
+						body: JSON.stringify({
+							nombre_de_pais: nombre
+						}),
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: "Bearer " + token
+						}
+					})
+				} catch (error) {
+						console.log(error)
+				}
 				// headers: {
 				// 	Authorization: "Bearer " + token
 				// }

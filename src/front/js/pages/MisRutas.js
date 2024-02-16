@@ -31,7 +31,7 @@ export const MisRutas = () => {
 
 	useEffect(() => {
 		actions.getMisRutas(userId)
-	}, [handleDelete])
+	}, [])
 	
 	return (
 		store.error ?
