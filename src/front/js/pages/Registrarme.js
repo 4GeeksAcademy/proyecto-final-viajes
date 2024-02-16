@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+// import Swal from 'sweetalert2'
 
 export const Registrarme = () => {
 	const [nombre, setNombre] = useState("")
@@ -30,6 +31,13 @@ export const Registrarme = () => {
 		if(nombre != "" && apellidos != "" && email != "" && edad != "" && password != "" && residencia != "") {
 			let res = await actions.createUser(user)
 			if(res) {
+				Swal.fire({
+					position: "top-end",
+					icon: "success",
+					title: "El usuario ha sido creado",
+					showConfirmButton: false,
+					timer: 1500
+				  });
 				navigate("/iniciarsesion")
 			}else {
 				Swal.fire({

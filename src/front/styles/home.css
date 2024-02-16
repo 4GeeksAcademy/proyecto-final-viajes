@@ -2,6 +2,16 @@
     font-family: 'Inter', sans-serif;
 }
 
+/* .navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+} */
+
 .px-4 {
     padding-right: 2.5rem!important;
     padding-left: -0.5rem!important;
@@ -138,17 +148,11 @@
 }
 
 input[type="checkbox"] {
-    margin-left: 175px;
     appearance: none;
     -webkit-appearance: none;
-    height: 70px;
-    width: 70px;
     background-color: gray;
     border-radius: 100px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 input[type="checkbox"]:after {

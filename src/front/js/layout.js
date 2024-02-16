@@ -10,6 +10,9 @@ import injectContext from "./store/appContext";
 
 import { Footer } from "./component/footer";
 import Header from "./component/Header";
+import Administrar from "./pages/Administrar";
+import Paises from "./pages/Paises";
+import FormPais from "./component/FormPais";
 
 //create your first component
 const Layout = () => {
@@ -28,6 +31,9 @@ const Layout = () => {
                         <Route element={<MisRutas />} path="/misrutas" />
                         <Route element={<Iniciarsesion />} path="/iniciarsesion" />
                         <Route element={<Registrarme />} path="/registrarme" />
+                        <Route element={<Administrar />} path="/admin" />
+                        <Route element={<Paises />} path="/admin/paises" />
+                        <Route element={<FormPais />} path="crearpais" />
                     </Routes>
                     <Footer />
             </BrowserRouter>

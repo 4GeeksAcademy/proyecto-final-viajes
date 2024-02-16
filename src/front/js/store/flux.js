@@ -7,7 +7,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			rutas: [],
 			misRutas: [],
 			tours: [],
-			token: ""
+			token: "",
+			mercadoPago: {},
+			ciudadesyPaises:[]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -50,6 +52,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const res = await fetch(`${process.env.BACKEND_URL}ciudad`)
 					const data = await res.json()
 					setStore({ciudades: data})
+				} catch (error) {
+					return error
+				}
+			},
+			getCiudadesyPaises: async () => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}ciudades`)
+					const data = await res.json()
+					setStore({ciudadesyPaises: data})
 				} catch (error) {
 					return error
 				}
@@ -98,6 +109,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if(res.status == 200) {
 						const data = await res.json()
 					localStorage.setItem("token", data.token)
+					localStorage.setItem("id", data.id)
+					localStorage.setItem("rol", data.rol)
+					localStorage.setItem("nombre", data.nombre)
 					setStore({token: data.token})
 					return true
 					}
@@ -106,11 +120,85 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false
 				}
 			},
-			crearPais: () => {
+			agregarMisRutas: async (id_ruta, id_usuario) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}por_visitar/${id_usuario}`, {
+						method: 'POST',
+						body: JSON.stringify({
+							id_ruta: id_ruta
+						}),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await res.json()
+					return data
+				} catch (error) {
+					return error
+				}
+			},
+			getMisRutas: async (id_usuario) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}por_visitar/${id_usuario}`)
+					const data = await res.json()
+					if(res.status === 200) {
+						setStore({misRutas: data})
+					}else {
+						setStore({error: true})
+					}
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			deleteMiRuta: async (id_ruta, id_usuario) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}mis_rutas/${id_ruta}/${id_usuario}`, {
+						method: 'DELETE'
+					})
+					const data = await res.json()
+					getActions().getMisRutas(id_usuario)
+					return data
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			crearPais: async (nombre) => {
 				let token = localStorage.getItem("token")
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}paises`, {
+						method: 'POST',
+						body: JSON.stringify({
+							nombre_de_pais: nombre
+						}),
+						headers: {
+							"Content-Type": "application/json",
+							Authorization: "Bearer " + token
+						}
+					})
+				} catch (error) {
+						console.log(error)
+				}
 				// headers: {
 				// 	Authorization: "Bearer " + token
 				// }
+			},
+			mercadoPago: async (plan) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}preference`, {
+						method: 'POST',
+						body: JSON.stringify({
+							plan: plan
+						}),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await res.json()
+					console.log(data)
+					setStore({mercadoPago: data})
+				} catch (error) {
+					console.log(error)
+				}
 			}
 		}
 	}
