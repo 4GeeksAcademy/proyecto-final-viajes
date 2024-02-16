@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import "../../styles/home.css";
+import { Context } from "../store/appContext";
 
 export const MisRutas = () => {
+	const userId = localStorage.getItem("id")
+	const {store, actions} = useContext(Context)
 
+	useEffect(() => {
+		actions.getMisRutas(userId)
+	}, [])
+	for (let i = 0; i < store.misRutas.length; i++) {
+		
+	}
 	return (
 		<div className="bg-black">
 
@@ -11,6 +20,7 @@ export const MisRutas = () => {
 
 
 			<div className="card-group row menu mx-auto py-5">
+				
 				<div className="col-4 d-flex RUTA">
 					<div className="card bg-black">
 						<img src="https://media.istockphoto.com/id/1285957020/es/foto/explosi%C3%B3n-de-una-bombilla-el%C3%A9ctrica-tradicional-disparo-tomado-a-alta-velocidad.jpg?s=612x612&w=0&k=20&c=TC2l24YAi38mV1AYLAX0vVz3GLJPqop8b_g_ZUD-DyM=" className="card-img-top border border-white " alt="fotico" />
@@ -23,7 +33,7 @@ export const MisRutas = () => {
 					</div>
 				</div>
 
-				<div className="col-4 d-flex RUTA">
+				{/* <div className="col-4 d-flex RUTA">
 					<div className="card bg-black">
 						<img src="https://media.istockphoto.com/id/1285957020/es/foto/explosi%C3%B3n-de-una-bombilla-el%C3%A9ctrica-tradicional-disparo-tomado-a-alta-velocidad.jpg?s=612x612&w=0&k=20&c=TC2l24YAi38mV1AYLAX0vVz3GLJPqop8b_g_ZUD-DyM=" className="card-img-top border border-white" alt="fotico" />
 						<div className="card-body">
@@ -42,7 +52,7 @@ export const MisRutas = () => {
 							<p className="card-text text-light">Tiempo: </p>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

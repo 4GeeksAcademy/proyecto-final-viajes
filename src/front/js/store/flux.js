@@ -98,12 +98,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if(res.status == 200) {
 						const data = await res.json()
 					localStorage.setItem("token", data.token)
+					localStorage.setItem("id", data.id)
 					setStore({token: data.token})
 					return true
 					}
 				} catch (error) {
 					console.log(error)
 					return false
+				}
+			},
+			agregarMisRutas: async (id_ruta, id_usuario) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}por_visitar/${id_usuario}`, {
+						method: 'POST',
+						body: JSON.stringify({
+							id_ruta: id_ruta
+						}),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await res.json()
+					return data
+				} catch (error) {
+					return error
+				}
+			},
+			getMisRutas: async (id_usuario) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}por_visitar/${id_usuario}`)
+					const data = await res.json()
+					setStore({misRutas: data})
+				} catch (error) {
+					return error
 				}
 			},
 			crearPais: () => {
