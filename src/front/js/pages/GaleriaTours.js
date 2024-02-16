@@ -27,7 +27,14 @@ export const GaleriaTours = () => {
 	const handleClose = () => setShow(false)
 	const handleGuardar = async (idRuta) => {
 		const miRuta = await actions.agregarMisRutas(idRuta, userId)
-		console.log(miRuta)
+		Swal.fire({
+			position: "top-end",
+			icon: "success",
+			title: "Has guardado correctamente la ruta",
+			showConfirmButton: false,
+			timer: 1500
+		  });
+		  setShow(false)
 	}
 
 	useEffect(() => {
@@ -44,11 +51,11 @@ export const GaleriaTours = () => {
 				</p>
 			</div> */}
 
-			<div className="card-group row menu mx-auto py-5">
+			<div className="card-group place-content-center row menu mx-auto py-5">
 				{store.tours.map((tour, id) => (
-					<div key={id} className="col-4 d-flex RUTA">
-						<div className="card bg-black" onClick={() => handleShow(tour)} >
-							<img src={tour.imagen} className="card-img-top border border-white" alt={tour.nombre_de_ruta} />
+					<div key={id} className="col-12 col-md-3 d-flex RUTA">
+						<div className="card bg-black" style={{"minWidth": "200px"}} onClick={() => handleShow(tour)} >
+							<img src={tour.imagen} className="card-img-top border border-white" height={"200px"} alt={tour.nombre_de_ruta} />
 							<div className="card-body">
 								<h4 className="card-title text-center text-light">{tour.nombre_de_ruta}</h4>
 								<p className="card-text text-light pt-4">Distancia: {tour.distancia} </p>
