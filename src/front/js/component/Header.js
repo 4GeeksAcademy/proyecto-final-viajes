@@ -1,13 +1,11 @@
 import React from "react";
 import { Navbar, NavbarBrand, Container, NavbarToggle, NavbarCollapse, Nav, NavLink, Image } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const token = localStorage.getItem("token")
-    const navigate = useNavigate()
+
     const handleLogout = () => {
         localStorage.clear()
-        navigate("/")
     }
     return (
         <Navbar expand="lg" className="bg-dark w-100 navbar-light" sticky="top">
