@@ -87,7 +87,7 @@ def login():
             "nombre": user.nombre
         }
         access_token = create_access_token(identity=datos)
-        response_body = {"token": access_token, "id": user.id, "rol": user.rol}
+        response_body = {"token": access_token, "id": user.id, "rol": user.rol, "nombre": user.nombre}
         return jsonify(response_body), 200
     else:
         return jsonify({"msg": "Usuario o contraseña incorrectos"}), 404
@@ -168,23 +168,17 @@ def handle_por_visitar(id_usuario):
     }, ruta))
     return jsonify(response_body), 200
 
-@api.route("/mis_rutas/<int:por_visitar_id>", methods=['GET', 'PUT', 'DELETE'])
-def handle_por_visitar_id(por_visitar_id):
-    por_visitar = Por_Visitar.query.filter_by(id=por_visitar_id).first()
+@api.route("/mis_rutas/<int:id_ruta>/<int:id_usuario>", methods=['GET', 'DELETE'])
+def handle_por_visitar_id(id_ruta, id_usuario):
+    por_visitar = Por_Visitar.query.filter_by(id_ruta=id_ruta, id_usuario=id_usuario).first()
+    if por_visitar is None:
+        return jsonify({"msg": "No existe la ruta que deseas eliminar"}), 404
     if request.method == 'DELETE':
         db.session.delete(por_visitar)
         db.session.commit()
         return jsonify({"msg": "Ruta eliminada de tus rutas"}), 200
-    if request.method == 'PUT':
-        body = json.loads(request.data)
-        if "visitada" in body:
-            por_visitar.visitada = body['visitada']
-        db.session.commit()
-        return jsonify({"msg": "Ruta marcada como visitada"}), 200
     if por_visitar is not None:
         return jsonify(por_visitar.serialize()), 200
-    else:
-        return jsonify({"msg": "Esa ruta no existe"})
 
 #Rutas protegidas
 
