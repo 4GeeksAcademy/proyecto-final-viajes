@@ -8,8 +8,10 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 import json
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
+import mercadopago
 
 api = Blueprint('api', __name__)
+sdk = mercadopago.SDK("APP_USR-2926550097213535-092911-5eded40868803c83f12e9eef1afa99fa-1160956296")
 
 # Allow CORS requests to this API
 CORS(api)
@@ -313,3 +315,31 @@ def editar_eliminar_ruta(ruta_id):
             return jsonify({"msg": "Esa ruta no existe"}), 404
     else:
         return jsonify({"msg": "No estas autorizado para realizar esto"}), 401
+
+@api.route("/preference", methods=['POST'])
+def preference():
+    body = json.loads(request.data)
+    plan = body["plan"]
+    # Crea un ítem en la preferencia
+    preference_data = {
+        "items": [
+            {
+                "title": "PaTuristear plan",
+                "quantity": 1,
+                "unit_price": plan,
+            }
+        ],
+        "auto_return": "approved",
+        "back_urls": {
+            "failure": "https://ideal-memory-qwq5w5556vv2xqpj-3000.app.github.dev",
+            "pending": "https://ideal-memory-qwq5w5556vv2xqpj-3000.app.github.dev",
+            "success": "https://ideal-memory-qwq5w5556vv2xqpj-3000.app.github.dev"
+        },
+        "payer": {
+            "email": "test_user_94708656@testuser.com"
+        }
+    }
+
+    preference_response = sdk.preference().create(preference_data)
+    preference = preference_response["response"]
+    return preference, 200

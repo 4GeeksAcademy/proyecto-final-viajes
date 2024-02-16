@@ -7,7 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			rutas: [],
 			misRutas: [],
 			tours: [],
-			token: ""
+			token: "",
+			mercadoPago: {}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -139,6 +140,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// headers: {
 				// 	Authorization: "Bearer " + token
 				// }
+			},
+			mercadoPago: async (plan) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}preference`, {
+						method: 'POST',
+						body: JSON.stringify({
+							plan: plan
+						}),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await res.json()
+					console.log(data)
+					setStore({mercadoPago: data})
+				} catch (error) {
+					console.log(error)
+				}
 			}
 		}
 	}

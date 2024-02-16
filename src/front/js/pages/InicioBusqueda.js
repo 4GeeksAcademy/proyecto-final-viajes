@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../../styles/home.css";
 import Jumbotron from "../component/Jumbotron";
+import { Context } from "../store/appContext";
 
 export const InicioBusqueda = () => {
-
+	const {store, actions} = useContext(Context)
+	const pagar = async (plan) => {
+		await actions.mercadoPago(plan)
+		let url = await store.mercadoPago.init_point
+		window.location.replace(url)
+	}
 	return (
 		<div className="bg-black">
 			{/* BUSQUEDA */}
@@ -62,7 +68,7 @@ export const InicioBusqueda = () => {
 					<div className="bg-black text-light text-center mes redondeado">
 						1 MES
 					</div>
-					<div className="bg-white text-center mensualidad rounded-bottom">
+					<div onClick={() => pagar(1.99)} className="bg-white text-center mensualidad rounded-bottom">
 						1,99 $ / AL MES
 					</div>
 				</div>
