@@ -130,19 +130,19 @@ def tour_por_ciudad(ciudad_id):
     response_body = list(map(lambda ruta: ruta.serialize(), ruta))
     return jsonify(response_body), 200
 
-@api.route("/por_visitar", methods=['GET', 'POST'])
-def handle_por_visitar():
+@api.route("/por_visitar/<int:user_id>", methods=['GET', 'POST'])
+def handle_por_visitar(id_usuario):
     if request.method == 'POST':
         ruta = json.loads(request.data)
         nueva_ruta = Por_Visitar(
             visitada = False,
-            id_usuario = ruta['id_usuario'],
+            id_usuario = id_usuario,
             id_ruta = ruta['id_ruta']
         )
         db.session.add(nueva_ruta)
         db.session.commit()
         return jsonify({"msg": "Ruta agregada corrctamente a tus rutas"}), 200
-    ruta = Por_Visitar.query.all()
+    ruta = Por_Visitar.query.filter_by(id_usuario=id_usuario).all()
     if ruta == []:
         return jsonify({"msg": "No existen rutas en tus rutas"}), 404
     response_body = list(map(lambda ruta: ruta.serialize(), ruta))

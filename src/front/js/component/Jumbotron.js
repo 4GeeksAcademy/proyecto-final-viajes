@@ -51,7 +51,7 @@ const Jumbotron = () => {
                                 <Button variant="secondary" className="busqueda">BUSCAR</Button>
                             </Link> : 
                             <Link to={"/registrarme"}>
-                                <Button variant="secondary" className="busqueda">Registrarme</Button>
+                                <Button variant="secondary" className="busqueda w-100">Registrarme</Button>
                             </Link>
                         }
                     </FormGroup>
