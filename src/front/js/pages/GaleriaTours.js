@@ -16,16 +16,18 @@ import { Context } from "../store/appContext";
 export const GaleriaTours = () => {
 	const {id} = useParams()
 	const [show, setShow] = useState(false)
-	const [item, setItem] = useState({})
+	const [ruta, setRuta] = useState({})
 	const {actions, store} = useContext(Context)
+	const userId = localStorage.getItem("id")
 
-	const handleShow = (item) => {
+	const handleShow = (tour) => {
 		setShow(true)
-		setItem(item)
+		setRuta(tour)
 	}
 	const handleClose = () => setShow(false)
-	const handleGuardar = (item) => {
-		
+	const handleGuardar = async (idRuta) => {
+		const miRuta = await actions.agregarMisRutas(idRuta, userId)
+		console.log(miRuta)
 	}
 
 	useEffect(() => {
@@ -43,14 +45,14 @@ export const GaleriaTours = () => {
 			</div> */}
 
 			<div className="card-group row menu mx-auto py-5">
-				{store.tours.map((item, id) => (
+				{store.tours.map((tour, id) => (
 					<div key={id} className="col-4 d-flex RUTA">
-						<div className="card bg-black" onClick={() => handleShow(item)} >
-							<img src={item.imagen} className="card-img-top border border-white" alt={item.nombre_de_ruta} />
+						<div className="card bg-black" onClick={() => handleShow(tour)} >
+							<img src={tour.imagen} className="card-img-top border border-white" alt={tour.nombre_de_ruta} />
 							<div className="card-body">
-								<h4 className="card-title text-center text-light">{item.nombre_de_ruta}</h4>
-								<p className="card-text text-light pt-4">Distancia: {item.distancia} </p>
-								<p className="card-text text-light">Tiempo: {item.tiempo_de_recorrido}</p>
+								<h4 className="card-title text-center text-light">{tour.nombre_de_ruta}</h4>
+								<p className="card-text text-light pt-4">Distancia: {tour.distancia} </p>
+								<p className="card-text text-light">Tiempo: {tour.tiempo_de_recorrido}</p>
 							</div>
 						</div>
 					</div>
@@ -61,20 +63,20 @@ export const GaleriaTours = () => {
 
 			<Modal show={show} onHide={handleClose} className="row">
 				<Modal.Header>
-					<Modal.Title >{item.nombre_de_ruta}</Modal.Title>
+					<Modal.Title >{ruta.nombre_de_ruta}</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<Row>
 						<Col>
-							<p>{item.descripcion}</p>
+							<p>{ruta.descripcion}</p>
 						</Col>
 						<Col className="d-flex justify-content-center">
 							<div>
 								<div className="bg-white carrusel">
-									<Image src={item.imagen} alt={item.nombre_de_ruta} width={"100%"} height={"100%"} />
+									<Image src={ruta.imagen} alt={ruta.nombre_de_ruta} width={"100%"} height={"100%"} />
 								</div>
 								<div className="iconos d-flex align-items-center justify-content-center">
-									<svg onClick={handleGuardar()} xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-bookmark-fill" viewBox="0 0 16 16">
+									<svg onClick={() => handleGuardar(ruta.id)} xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-bookmark-fill" viewBox="0 0 16 16">
 										<path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2"/>
 									</svg>
 									{/* <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-geo-fill" viewBox="0 0 16 16">

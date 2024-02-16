@@ -85,7 +85,7 @@ def login():
             "nombre": user.nombre
         }
         access_token = create_access_token(identity=datos)
-        response_body = {"token": access_token}
+        response_body = {"token": access_token, "id": user.id}
         return jsonify(response_body), 200
     else:
         return jsonify({"msg": "Usuario o contraseña incorrectos"}), 404
@@ -122,6 +122,13 @@ def handle_rutas():
     response_body = list(map(lambda ruta: ruta.serialize(), ruta))
     return jsonify(response_body), 200
 
+@api.route("/ruta/<int:ruta_id>", methods=['GET'])
+def ruta_por_id(ruta_id):
+    ruta = Rutas.query.filter_by(ruta_id=ruta_id).first()
+    if ruta is None:
+        return jsonify({"msg": "No hay rutas para mostrar"}), 404
+    return jsonify(ruta.serialize()), 200
+
 @api.route("/tour_por_ciudad/<int:ciudad_id>", methods=['GET'])
 def tour_por_ciudad(ciudad_id):
     ruta = Rutas.query.filter_by(id_ciudad = ciudad_id).all()
@@ -130,7 +137,7 @@ def tour_por_ciudad(ciudad_id):
     response_body = list(map(lambda ruta: ruta.serialize(), ruta))
     return jsonify(response_body), 200
 
-@api.route("/por_visitar/<int:user_id>", methods=['GET', 'POST'])
+@api.route("/por_visitar/<int:id_usuario>", methods=['GET', 'POST'])
 def handle_por_visitar(id_usuario):
     if request.method == 'POST':
         ruta = json.loads(request.data)
@@ -148,7 +155,7 @@ def handle_por_visitar(id_usuario):
     response_body = list(map(lambda ruta: ruta.serialize(), ruta))
     return jsonify(response_body), 200
 
-@api.route("/por_visitar/<int:por_visitar_id>", methods=['GET', 'PUT', 'DELETE'])
+@api.route("/mis_rutas/<int:por_visitar_id>", methods=['GET', 'PUT', 'DELETE'])
 def handle_por_visitar_id(por_visitar_id):
     por_visitar = Por_Visitar.query.filter_by(id=por_visitar_id).first()
     if request.method == 'DELETE':
@@ -265,7 +272,7 @@ def agregar_ruta():
     else:
         return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
 
-@api.route("/ruta/<int:ruta_id>", methods=['PUT', 'DELETE', 'GET'])
+@api.route("/ruta/<int:ruta_id>", methods=['PUT', 'DELETE'])
 @jwt_required()
 def editar_eliminar_ruta(ruta_id):
     current_user = get_jwt_identity()
