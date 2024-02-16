@@ -111,6 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					localStorage.setItem("token", data.token)
 					localStorage.setItem("id", data.id)
 					localStorage.setItem("rol", data.rol)
+					localStorage.setItem("nombre", data.nombre)
 					setStore({token: data.token})
 					return true
 					}
@@ -140,7 +141,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try {
 					const res = await fetch(`${process.env.BACKEND_URL}por_visitar/${id_usuario}`)
 					const data = await res.json()
-					setStore({misRutas: data})
+					if(res.status === 200) {
+						setStore({misRutas: data})
+					}else {
+						setStore({error: true})
+					}
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			deleteMiRuta: async (id_ruta, id_usuario) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}mis_rutas/${id_ruta}/${id_usuario}`, {
+						method: 'DELETE'
+					})
+					const data = await res.json()
+					return data
 				} catch (error) {
 					console.log(error)
 				}
