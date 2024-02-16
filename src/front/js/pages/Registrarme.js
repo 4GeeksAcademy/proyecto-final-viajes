@@ -31,6 +31,13 @@ export const Registrarme = () => {
 		if(nombre != "" && apellidos != "" && email != "" && edad != "" && password != "" && residencia != "") {
 			let res = await actions.createUser(user)
 			if(res) {
+				Swal.fire({
+					position: "top-end",
+					icon: "success",
+					title: "El usuario ha sido creado",
+					showConfirmButton: false,
+					timer: 1500
+				  });
 				navigate("/iniciarsesion")
 			}else {
 				Swal.fire({

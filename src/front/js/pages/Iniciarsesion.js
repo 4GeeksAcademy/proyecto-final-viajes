@@ -3,6 +3,7 @@ import "../../styles/home.css";
 import { Image } from "react-bootstrap";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export const Iniciarsesion = () => {
     const [email, setEmail] = useState("")

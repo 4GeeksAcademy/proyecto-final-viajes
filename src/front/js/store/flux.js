@@ -7,7 +7,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			rutas: [],
 			misRutas: [],
 			tours: [],
-			token: ""
+			token: "",
+			mercadoPago: {}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -98,6 +99,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if(res.status == 200) {
 						const data = await res.json()
 					localStorage.setItem("token", data.token)
+					localStorage.setItem("id", data.id)
+					localStorage.setItem("rol", data.rol)
 					setStore({token: data.token})
 					return true
 					}
@@ -106,11 +109,55 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false
 				}
 			},
+			agregarMisRutas: async (id_ruta, id_usuario) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}por_visitar/${id_usuario}`, {
+						method: 'POST',
+						body: JSON.stringify({
+							id_ruta: id_ruta
+						}),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await res.json()
+					return data
+				} catch (error) {
+					return error
+				}
+			},
+			getMisRutas: async (id_usuario) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}por_visitar/${id_usuario}`)
+					const data = await res.json()
+					setStore({misRutas: data})
+				} catch (error) {
+					console.log(error)
+				}
+			},
 			crearPais: () => {
 				let token = localStorage.getItem("token")
 				// headers: {
 				// 	Authorization: "Bearer " + token
 				// }
+			},
+			mercadoPago: async (plan) => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}preference`, {
+						method: 'POST',
+						body: JSON.stringify({
+							plan: plan
+						}),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await res.json()
+					console.log(data)
+					setStore({mercadoPago: data})
+				} catch (error) {
+					console.log(error)
+				}
 			}
 		}
 	}
