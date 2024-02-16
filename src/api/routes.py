@@ -343,3 +343,17 @@ def preference():
     preference_response = sdk.preference().create(preference_data)
     preference = preference_response["response"]
     return preference, 200
+
+@api.route("/ciudades",methods=["GET"])
+def get_ciudades():
+    ciudad = db.session.query(Ciudad,Pais).join(Pais).all()
+    if ciudad == []:
+        return jsonify({"msg": "No existen ciudades para mostrar"}), 404
+    response_body = list(map(lambda ciudad: {
+        "idCiudad":ciudad[0].id,
+        "nombre_de_ciudad":ciudad[0].nombre_de_ciudad,
+        "idPais":ciudad[1].id,
+        "nombre_de_pais":ciudad[1].nombre_de_pais,
+    }, ciudad))
+    return jsonify(response_body), 200
+
