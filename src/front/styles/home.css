@@ -2,16 +2,6 @@
     font-family: 'Inter', sans-serif;
 }
 
-/* .navbar {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-} */
-
 .px-4 {
     padding-right: 2.5rem!important;
     padding-left: -0.5rem!important;
@@ -47,23 +37,6 @@
     font-size: 30px;
     letter-spacing: 10px;
     padding-left: 50px;
-}
-
-.servicio1 {
-    margin-left: 50px;
-    width: 30.333333%;
-}
-
-.servicio2 {
-    padding-top: 150px;
-    margin-left: 15px;
-    width: 30.333333%;
-}
-
-.servicio3 {
-    padding-top: 300px;
-    margin-left: 15px;
-    width: 30.333333%;
 }
 
 .RUTAS {
@@ -200,18 +173,6 @@ input[type="checkbox"]:checked:after {
     display: block;
 }
 
-  
-.mensualidad {
-    margin-left: -12px;
-    margin-right: -12px;
-    padding: 15px;
-    font-size: 25px;
-}
-
-.mes {
-    padding: 75px;
-    font-size: 28px;
-}
 
 .redondeado {
     border-radius: 2rem!important;
@@ -266,9 +227,8 @@ input[type="checkbox"]:checked:after {
 
 .mes {
     padding: 75px;
-    font-size: 32px;
+    font-size: 27px;
 }
-
 
 .redondeado {
     border-radius: 2rem!important;

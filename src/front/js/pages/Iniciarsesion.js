@@ -30,8 +30,8 @@ export const Iniciarsesion = () => {
                 text: "Todos los campos son obligatorios"
             });
         }
-
-            <p className="servicios menu text-light py-5">INICIAR SESION</p>
+        <div className="py-5">
+            <p className="servicios menu text-light py-5">INICIAR SESIÓN</p>
             
 			<form className="form menu rounded-3">
                 <div class="mb-3 pb-3">
@@ -42,9 +42,9 @@ export const Iniciarsesion = () => {
                     <label for="password" class="form-label pb-2 fs-6">CONTRASEÑA</label>
                     <input type="password" class="form-control" id="password"/>
                 </div>
-                 <button type="submit" className="btn btn-secondary menu fs-6">INICIAR SESION</button>
+                 <button type="submit" className="btn btn-secondary menu fs-6">INICIAR SESIÓN</button>
             </form>
         </div>
 
-    );
+    };
 };
