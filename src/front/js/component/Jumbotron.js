@@ -6,12 +6,15 @@ import { Link } from "react-router-dom";
 const Jumbotron = () => {
     const { store, actions } = useContext(Context)
     const [ciudadSeleccionada, setCiudadSeleccionada] = useState(undefined)
+    const token = localStorage.getItem("token")
+
     const handleSelected = (e) => {
         actions.getCiudadPorPais(e.target.value)
     }
     const handleCiudadSeleccionada = (e) => {
         setCiudadSeleccionada(e.target.value)
     }
+    
     return (
         <>
             <div className="w-75 mx-auto pt-3">
@@ -43,9 +46,14 @@ const Jumbotron = () => {
                         </FormSelect>
                     </FormGroup>
                     <FormGroup className="w-25 mb-2">
-                        <Link to={"/tours/" + ciudadSeleccionada}>
-                            <Button variant="secondary" className="busqueda">BUSCAR</Button>
-                        </Link>
+                        {token ?
+                            <Link to={"/tours/" + ciudadSeleccionada}>
+                                <Button variant="secondary" className="busqueda">BUSCAR</Button>
+                            </Link> : 
+                            <Link to={"/registrarme"}>
+                                <Button variant="secondary" className="busqueda">Registrarme</Button>
+                            </Link>
+                        }
                     </FormGroup>
                 </Form>
             </div>
