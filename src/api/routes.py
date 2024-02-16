@@ -149,10 +149,21 @@ def handle_por_visitar(id_usuario):
         db.session.add(nueva_ruta)
         db.session.commit()
         return jsonify({"msg": "Ruta agregada corrctamente a tus rutas"}), 200
-    ruta = Por_Visitar.query.filter_by(id_usuario=id_usuario).all()
+    ruta = db.session.query(Por_Visitar, Rutas).filter_by(id_usuario=id_usuario).join(Rutas).all()
     if ruta == []:
         return jsonify({"msg": "No existen rutas en tus rutas"}), 404
-    response_body = list(map(lambda ruta: ruta.serialize(), ruta))
+    response_body = list(map(lambda x: {
+        "id": x[0].id,
+        "id_usuario": x[0].id_usuario,
+        "visitada": x[0].visitada,
+        "id_ruta": x[1].id,
+        "nombre_de_ruta": x[1].nombre_de_ruta,
+        "distancia": x[1].distancia,
+        "tiempo_de_recorrido": x[1].tiempo_de_recorrido,
+        "imagen": x[1].imagen,
+        "id_ciudad": x[1].id_ciudad,
+        "descripcion": x[1].descripcion
+    }, ruta))
     return jsonify(response_body), 200
 
 @api.route("/mis_rutas/<int:por_visitar_id>", methods=['GET', 'PUT', 'DELETE'])

@@ -131,7 +131,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await res.json()
 					setStore({misRutas: data})
 				} catch (error) {
-					return error
+					console.log(error)
 				}
 			},
 			crearPais: () => {
