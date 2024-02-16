@@ -85,7 +85,7 @@ def login():
             "nombre": user.nombre
         }
         access_token = create_access_token(identity=datos)
-        response_body = {"token": access_token, "id": user.id}
+        response_body = {"token": access_token, "id": user.id, "rol": user.rol}
         return jsonify(response_body), 200
     else:
         return jsonify({"msg": "Usuario o contraseña incorrectos"}), 404

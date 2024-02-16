@@ -99,6 +99,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						const data = await res.json()
 					localStorage.setItem("token", data.token)
 					localStorage.setItem("id", data.id)
+					localStorage.setItem("rol", data.rol)
 					setStore({token: data.token})
 					return true
 					}
