@@ -9,9 +9,6 @@ export const MisRutas = () => {
 	useEffect(() => {
 		actions.getMisRutas(userId)
 	}, [])
-	for (let i = 0; i < store.misRutas.length; i++) {
-		
-	}
 	return (
 		<div className="bg-black">
 
