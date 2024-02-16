@@ -2,6 +2,8 @@ import React from "react";
 import { Navbar, NavbarBrand, Container, NavbarToggle, NavbarCollapse, Nav, NavLink, Image } from "react-bootstrap";
 
 const Header = () => {
+    const token = localStorage.getItem("token")
+
     return (
         <Navbar expand="lg" className="bg-dark w-100 navbar-light" sticky="top">
             <Container className="d-flex align-items-center justify-content-between">
@@ -20,8 +22,8 @@ const Header = () => {
                     <NavbarCollapse id="basic-navbar-nav" className="justify-self-end">
                         <Nav>
                             <NavLink href="/" className="text-light px-4 menu">INICIO</NavLink>
-                            <NavLink href="/registrarme" className="text-light px-4 menu">REGISTRARME</NavLink>
-                            <NavLink href="/iniciarsesion" className="text-light px-4 menu">INICIAR SESION</NavLink>
+                            {token ? <NavLink href="/misrutas" className="text-light text-center px-4 menu">MIS RUTAS</NavLink> : <NavLink href="/registrarme" className="text-light px-4 menu">REGISTRARME</NavLink> }
+                            {token ? <NavLink href="/" className="text-light px-4 menu text-center" onClick={localStorage.removeItem("token")}>CERRAR SESION</NavLink> : <NavLink href="/iniciarsesion" className="text-light px-4 menu text-center">INICIAR SESION</NavLink>}
                         </Nav>
                     </NavbarCollapse>
                 </div>
