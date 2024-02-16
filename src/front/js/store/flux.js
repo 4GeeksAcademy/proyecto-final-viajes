@@ -8,7 +8,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			misRutas: [],
 			tours: [],
 			token: "",
-			mercadoPago: {}
+			mercadoPago: {},
+			ciudadesyPaises:[]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -51,6 +52,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const res = await fetch(`${process.env.BACKEND_URL}ciudad`)
 					const data = await res.json()
 					setStore({ciudades: data})
+				} catch (error) {
+					return error
+				}
+			},
+			getCiudadesyPaises: async () => {
+				try {
+					const res = await fetch(`${process.env.BACKEND_URL}ciudades`)
+					const data = await res.json()
+					setStore({ciudadesyPaises: data})
 				} catch (error) {
 					return error
 				}
