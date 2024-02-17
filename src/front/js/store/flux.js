@@ -182,6 +182,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// 	Authorization: "Bearer " + token
 				// }
 			},
+			eliminarPais: async (idPais) => {
+				let token = localStorage.getItem("token")
+				const res = await fetch(process.env.BACKEND_URL + "paises/" + idPais, {
+					method: 'DELETE',
+					headers: {
+						Authorization: "Bearer " + token
+					}
+				})
+			},
 			mercadoPago: async (plan) => {
 				try {
 					const res = await fetch(`${process.env.BACKEND_URL}preference`, {
