@@ -181,7 +181,6 @@ def handle_por_visitar_id(id_ruta, id_usuario):
         return jsonify(por_visitar.serialize()), 200
 
 #Rutas protegidas
-
 @api.route('/paises', methods=['POST'])
 @jwt_required()
 def agregar_pais():
