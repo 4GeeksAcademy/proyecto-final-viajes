@@ -62,7 +62,7 @@ export const InicioBusqueda = () => {
 							<div className="bg-black text-light text-center mes redondeado">
 								1 MES
 							</div>
-							<button onClick={() => pagar(1.99)} className="bg-white text-center mensualidad rounded-bottom w-100 mx-0">
+							<button onClick={() => pagar(1.99)} className="bg-white text-center rounded-bottom w-100 mensualidad mx-0">
 								1,99 $ / AL MES
 							</button>
 						</div>
