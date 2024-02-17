@@ -4,6 +4,7 @@ import { Context } from "../store/appContext";
 
 const Paises = () => {
     const { store, actions } = useContext(Context)
+    const token = localStorage.getItem("token")
 
     const handleDelete = (paisId) => {
         Swal.fire({
