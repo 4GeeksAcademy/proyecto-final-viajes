@@ -186,7 +186,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let token = localStorage.getItem("token")
 				const res = await fetch(process.env.BACKEND_URL + "paises/" + idPais, {
 					method: 'DELETE',
-					headers {
+					headers: {
 						Authorization: "Bearer " + token
 					}
 				})
