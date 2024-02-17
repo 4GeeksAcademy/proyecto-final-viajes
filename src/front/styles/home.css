@@ -184,17 +184,16 @@ input[type="checkbox"]:checked:after {
 }
 
   
-.mensualidad {
+/* .mensualidad {
     margin-left: -12px;
     margin-right: -12px;
     padding: 15px;
     font-size: 25px;
-}
+} */
 
-.mes {
-    padding: 75px;
+/* .mes {
     font-size: 28px;
-}
+} */
 
 .redondeado {
     border-radius: 2rem!important;
@@ -243,12 +242,12 @@ input[type="checkbox"]:checked:after {
 .mensualidad {
     margin-left: -12px;
     margin-right: -12px;
-    padding: 15px;
+    padding: 15px 0 15px 0;
     font-size: 25px;
 }
 
 .mes {
-    padding: 75px;
+    padding: 75px 0 75px 0;
     font-size: 32px;
 }
 
