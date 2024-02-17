@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 
 export const Registrarme = () => {
 	const [nombre, setNombre] = useState("")

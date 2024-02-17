@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Button, Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { Context } from "../store/appContext";
+import Swal from 'sweetalert2'
 
 const FormPais = () => {
     const [nombre, setNombre] = useState("")
@@ -9,6 +10,14 @@ const FormPais = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         actions.crearPais(nombre)
+        setNombre("")
+        Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Pais agregado correctamente",
+        showConfirmButton: false,
+        timer: 1500
+        });
     }
 
     return (
