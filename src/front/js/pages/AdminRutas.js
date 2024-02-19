@@ -1,14 +1,14 @@
 import React, { useContext, useEffect } from "react";
-import { Button, Col, Container, Table, Row } from "react-bootstrap";
+import { Button, Col, Container, Table, Row, Image } from "react-bootstrap";
 import { Context } from "../store/appContext";
 
-const Paises = () => {
+const AdminRutas = () => {
     const { store, actions } = useContext(Context)
     const token = localStorage.getItem("token")
 
-    const handleDelete = (paisId) => {
+    const handleDelete = (ciudadId) => {
         Swal.fire({
-			title: "¿Estás seguro que deseas eliminar este pais?",
+			title: "¿Estás seguro que deseas eliminar esta ciudad?",
 			text: "¡Esta acción no se puede revertir!",
 			icon: "warning",
 			showCancelButton: true,
@@ -20,7 +20,7 @@ const Paises = () => {
 				actions.eliminarPais(paisId)
 			Swal.fire({
 				title: "Deleted!",
-				text: "Your file has been deleted.",
+				text: "La ciudad ha sido eliminada.",
 				icon: "success"
 			});
 			}
@@ -28,31 +28,43 @@ const Paises = () => {
     }
 
     useEffect(() => {
-        actions.getPaises()
+        actions.getRutas()
     }, [])
 
     if (token) {
         return (
             <Container fluid className="bg-black pt-4" style={{ "height": "100vh" }}>
-                <h1 className="text-light text-center">Paises</h1>
-                <Button href="/crearPais" variant="outline-success" className="w-100 my-3 mx-auto">Agregar un país</Button>
+                <h1 className="text-light text-center">Ciudades</h1>
+                <Button href="/crearCiudad" variant="outline-success" className="w-100 my-3 mx-auto">Agregar una ciudad</Button>
                 <Table striped bordered hover className="w-50 mx-auto">
                     <thead>
                         <tr>
                             <th className="text-light text-center">Id</th>
-                            <th className="text-light text-center">País</th>
+                            <th className="text-light text-center">Ruta</th>
+                            <th className="text-light text-center">Distancia</th>
+                            <th className="text-light text-center">Imagen</th>
+                            <th className="text-light text-center">Descripcion</th>
+                            <th className="text-light text-center">Tiempo de recorrido</th>
+                            <th className="text-light text-center">Ciudad</th>
                             <th className="text-light text-center">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {store.paises.map((pais, id) => (
+                        {store.rutas.map((ruta, id) => (
                             <tr key={id}>
-                                <td className="text-light text-center">{pais.id}</td>
-                                <td className="text-light text-center">{pais.nombre_de_pais}</td>
+                                <td className="text-light text-center">{ruta.id}</td>
+                                <td className="text-light text-center">{ruta.nombre_de_ruta}</td>
+                                <td className="text-light text-center">{ruta.distancia}</td>
+                                <td className="text-light text-center">
+                                    <Image src={ruta.imagen} alt="Ruta" width={100} height={100} />
+                                </td>
+                                <td className="text-light text-center">{ruta.descripcion}</td>
+                                <td className="text-light text-center">{ruta.tiempo_de_recorrido}</td>
+                                <td className="text-light text-center">{ruta.id_ciudad}</td>
                                 <td>
                                     <Row>
                                         <Col className="d-flex justify-content-center align-items-center">
-                                            <Button onClick={() => handleDelete(pais.id)} variant="outline-danger">
+                                            <Button onClick={() => handleDelete(ruta.id)} variant="outline-danger">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
                                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
                                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
@@ -67,7 +79,7 @@ const Paises = () => {
                                                 </svg>
                                             </Button>
                                         </Col>
-                                    </Row>
+                                    </Row> 
                                 </td>
                             </tr>
                         ))}
@@ -82,4 +94,4 @@ const Paises = () => {
     
 }
 
-export default Paises
+export default AdminRutas

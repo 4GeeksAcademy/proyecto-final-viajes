@@ -8,7 +8,7 @@ const Administrar = () => {
     const token = localStorage.getItem("token")
     const rol = localStorage.getItem("rol")
 
-    if(token === store.token && rol === "1") {
+    if(token) {
         return (
             <div className="bg-black d-flex align-items-center" style={{"height": "100vh"}}>
                 <Container>
