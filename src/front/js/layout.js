@@ -13,6 +13,7 @@ import Header from "./component/Header";
 import Administrar from "./pages/Administrar";
 import Paises from "./pages/Paises";
 import FormPais from "./component/FormPais";
+import Ciudades from "./pages/Ciudades";
 
 //create your first component
 const Layout = () => {
@@ -33,7 +34,8 @@ const Layout = () => {
                         <Route element={<Registrarme />} path="/registrarme" />
                         <Route element={<Administrar />} path="/admin" />
                         <Route element={<Paises />} path="/admin/paises" />
-                        <Route element={<FormPais />} path="crearpais" />
+                        <Route element={<FormPais />} path="/crearPais" />
+                        <Route element={<Ciudades />} path="admin/ciudades" />
                     </Routes>
                     <Footer />
             </BrowserRouter>
