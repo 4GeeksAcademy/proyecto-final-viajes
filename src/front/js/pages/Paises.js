@@ -71,6 +71,7 @@ const Paises = () => {
                                 </td>
                             </tr>
                         ))}
+                        <Button variant="outline-primary" href="/admin" className="my-5">Volver</Button>
                     </tbody>
                 </Table>
             </Container>

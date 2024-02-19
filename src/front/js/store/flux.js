@@ -74,6 +74,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return error
 				}
 			},
+			eliminarRuta: async (id_ruta) => {
+				let token = localStorage.getItem("token")
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "ruta/" + id_ruta, {
+						method: 'DELETE',
+						headers: {
+							"Authorization": "Bearer" + token
+						}
+					})
+					const data = await res.json()
+					return data
+				} catch (error) {
+					onsole.log(error)
+				}
+			},
 			getRutasPorCiudad: async (id_ciudad) => {
 				try {
 					const res = await fetch(`${process.env.BACKEND_URL}tour_por_ciudad/${id_ciudad}`)
@@ -91,6 +106,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 					setStore({ciudades: data})
 				} catch (error) {
 					return error
+				}
+			},
+			eliminarCiudad: async (idCiudad) => {
+				let token = localStorage.getItem("token")
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "ciudad/" + idCiudad, {
+						method: 'DELETE',
+						headers: {
+							"Authorization": "Bearer " + token
+						}
+					})
+					const data = await res.json()
+					return data
+				} catch (error) {
+					console.log(error)
 				}
 			},
 			login: async (email, password) => {
@@ -172,9 +202,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}),
 						headers: {
 							"Content-Type": "application/json",
-							Authorization: "Bearer " + token
+							"Authorization": "Bearer " + token
 						}
 					})
+					const data = await res.json()
+					return data
 				} catch (error) {
 						console.log(error)
 				}
@@ -187,9 +219,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const res = await fetch(process.env.BACKEND_URL + "paises/" + idPais, {
 					method: 'DELETE',
 					headers: {
-						Authorization: "Bearer " + token
+						"Authorization": "Bearer " + token
 					}
 				})
+				const data = await res.json()
+				return data
 			},
 			mercadoPago: async (plan) => {
 				try {
