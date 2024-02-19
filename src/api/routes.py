@@ -69,6 +69,21 @@ def handle_user_id(user_id):
         return jsonify({"msg": "Sus datos fueron modificados"}), 200
     return jsonify(user.serialize()), 200
 
+@api.route("/token", methods=['POST'])
+def renovarToken():
+    nombre = request.json.get('nombre')
+    user = User.query.filter_by(nombre=nombre).first()
+    if user is None:
+        return jsonify({"msg": "El usuario no es válido"}), 404
+    datos = {
+        "email": user.email,
+        "rol": user.rol,
+        "nombre": user.nombre
+    }
+    access_token = create_access_token(identity=datos)
+    response_body = {"token": access_token, "id": user.id, "rol": user.rol, "nombre": user.nombre}
+    return jsonify(response_body), 200
+
 @api.route("/login", methods=['POST'])
 def login():
     email = request.json.get('email')
@@ -100,6 +115,14 @@ def handle_paises():
     response_body = list(map(lambda pais: pais.serialize(), pais))
     return jsonify(response_body), 200
 
+@api.route("/paises/<int:pais_id>", methods=['GET'])
+def get_pais(pais_id):
+    pais = Pais.query.filter_by(id=pais_id).first()
+    if pais is not None:
+            return jsonify(pais.serialize()), 200
+    else:
+        return jsonify({"msg": "Ese pais no existe"}), 404
+    
 @api.route("/ciudad", methods=['GET'])
 def handle_ciudad():
     ciudad = Ciudad.query.all()
@@ -196,7 +219,7 @@ def agregar_pais():
     else:
         return jsonify({"msg": "No estas autorizado para hacer esto"}), 401
 
-@api.route("/paises/<int:pais_id>", methods=['PUT', 'DELETE', 'GET'])
+@api.route("/paises/<int:pais_id>", methods=['PUT', 'DELETE'])
 @jwt_required()
 def editar_eliminar_pais(pais_id):
     current_user = get_jwt_identity()
@@ -211,10 +234,6 @@ def editar_eliminar_pais(pais_id):
             pais.nombre_de_pais = body['nombre_de_pais']
             db.session.commit()
             return jsonify({"msg": "Pais modificado correctamente"}), 200
-        if pais is not None:
-            return jsonify(pais.serialize()), 200
-        else:
-            return jsonify({"msg": "Ese pais no existe"}), 404
     else:
         return jsonify({"msg": "No estas autorizado para realizar esta accion"}), 401
     

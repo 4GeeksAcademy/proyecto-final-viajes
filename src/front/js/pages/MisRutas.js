@@ -6,7 +6,6 @@ import Swal from 'sweetalert2'
 export const MisRutas = () => {
 	const userId = localStorage.getItem("id")
 	const { store, actions } = useContext(Context)
-	const error = store.error
 	const token = localStorage.getItem("token")
 
 	const handleDelete = (id) => {
@@ -28,11 +27,13 @@ export const MisRutas = () => {
 			});
 			}
 	  });
+	  window.location.reload()
 	}
 
 	useEffect(() => {
 		actions.getMisRutas(userId)
 	}, [])
+
 	if(token) {
 		return (
 			store.error ?

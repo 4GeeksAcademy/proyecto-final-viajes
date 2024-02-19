@@ -192,8 +192,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
-			crearPais: async (nombre) => {
-				let token = localStorage.getItem("token")
+			crearPais: async (nombre, token) => {
 				try {
 					const res = await fetch(`${process.env.BACKEND_URL}paises`, {
 						method: 'POST',
@@ -214,16 +213,65 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// 	Authorization: "Bearer " + token
 				// }
 			},
-			eliminarPais: async (idPais) => {
-				let token = localStorage.getItem("token")
-				const res = await fetch(process.env.BACKEND_URL + "paises/" + idPais, {
-					method: 'DELETE',
-					headers: {
-						"Authorization": "Bearer " + token
-					}
-				})
-				const data = await res.json()
-				return data
+			renovarToken: async (nombre) => {
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "token", {
+						method: 'POST',
+						body: JSON.stringify({
+							"nombre": nombre
+						}),
+						headers: {
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await res.json()
+					return data
+					console.log(data)
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			eliminarPais: async (idPais, token) => {
+				console.log(token)
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "paises/" + idPais, {
+						method: 'DELETE',
+						headers: {
+							Authorization: "Bearer " + token
+						}
+					})
+					const data = await res.json()
+					return data
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			getPais: async (idPais) => {
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "paises/" + idPais)
+					const data = await res.json()
+					return data
+				} catch (error) {
+					console.log(error)
+				}
+			},
+			editarPais: async (nombre, token, id) => {
+				try {
+					const res = await fetch(process.env.BACKEND_URL + "/paises/" + id, {
+						method: 'PUT',
+						body: JSON.stringify({
+							nombre_de_pais: nombre
+						}),
+						headers: {
+							"Authorization": "Bearer " + token,
+							"Content-Type": "application/json"
+						}
+					})
+					const data = await res.json()
+					return data
+				} catch (error) {
+					console.log(error)
+				}
 			},
 			mercadoPago: async (plan) => {
 				try {

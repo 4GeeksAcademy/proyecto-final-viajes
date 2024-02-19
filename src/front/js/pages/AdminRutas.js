@@ -33,10 +33,10 @@ const AdminRutas = () => {
 
     if (token) {
         return (
-            <Container fluid className="bg-black pt-4" style={{ "height": "100vh" }}>
+            <Container fluid className="bg-black pt-4">
                 <h1 className="text-light text-center">Ciudades</h1>
                 <Button href="/crearCiudad" variant="outline-success" className="w-100 my-3 mx-auto">Agregar una ciudad</Button>
-                <Table striped bordered hover className="w-50 mx-auto">
+                <Table striped bordered hover className="mx-auto">
                     <thead>
                         <tr>
                             <th className="text-light text-center">Id</th>
