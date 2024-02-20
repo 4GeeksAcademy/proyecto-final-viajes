@@ -32,7 +32,7 @@ const Header = () => {
                             {rol == 1 ? <NavLink href="/admin" className="text-light text-center px-4 menu">ADMINISTRAR</NavLink> : <></>}
                             {token ? <NavLink href="/" className="text-light px-4 menu text-center" onClick={handleLogout}>CERRAR SESION</NavLink> 
                             : <NavLink href="/iniciarsesion" className="text-light px-4 menu text-center">INICIAR SESION</NavLink>}
-                            {token ? <NavLink href="/" className="text-light px-4 menu text-center">{usuario}</NavLink> : null}
+                            {token ? <NavLink href="/" className="text-light px-4 menu text-center">{usuario.toUpperCase()}</NavLink> : null}
                         </Nav>
                     </NavbarCollapse>
                 </div>
