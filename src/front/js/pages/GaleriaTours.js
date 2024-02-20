@@ -7,7 +7,7 @@ import { Row } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 
 export const GaleriaTours = () => {

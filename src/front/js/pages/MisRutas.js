@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 export const MisRutas = () => {
 	const userId = localStorage.getItem("id")

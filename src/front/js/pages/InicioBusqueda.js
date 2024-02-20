@@ -24,8 +24,10 @@ export const InicioBusqueda = () => {
 			</figure>
 			{/* SERVICIOS */}
 			<p className="servicios menu text-light">SERVICIOS</p>
+
 			<div className="card-group row menu mx-auto py-5">
-				<div className="col-4 d-flex servicio1">
+
+				<div className="col d-flex servicio1">
 					<div className="card bg-black">
 						<img src="https://i.ibb.co/3c5BNGH/pexels-monstera-production-7412098.jpg" className="card-img-top border border-2 border-white rounded-1" alt="fotico" />
 						<div className="card-body">
@@ -34,7 +36,8 @@ export const InicioBusqueda = () => {
 						</div>
 					</div>
 				</div>
-				<div className="col-4 d-flex servicio2">
+
+				<div className="col d-flex servicio2">
 					<div className="card bg-black">
 						<img src="https://i.ibb.co/jGbxYZ7/pexels-andrea-piacquadio-826349.jpg" className="card-img-top border border-2 border-white rounded-1" alt="fotico" />
 						<div className="card-body">
@@ -43,7 +46,8 @@ export const InicioBusqueda = () => {
 						</div>
 					</div>
 				</div>
-				<div className="col-4 d-flex servicio3">
+
+				<div className="col d-flex servicio3">
 					<div className="card bg-black">
 						<img src="https://i.ibb.co/0J1BtSW/pexels-andrea-piacquadio-837129.jpg" className="card-img-top border border-2 border-white" alt="fotico" />
 						<div className="card-body">
@@ -52,13 +56,14 @@ export const InicioBusqueda = () => {
 						</div>
 					</div>
 				</div>
+				
 			</div>
 			{/* PLANES */}
 			{token ? <></> :
 				<>
 					<p className="servicios menu text-light">PLANES</p>
 					<div className="container-fluid row menu ">
-						<div className="col-3 border border-3 border-white mx-5 redondeado my-5">
+						<div className="col border border-3 border-white mx-5 redondeado my-5">
 							<div className="bg-black text-light text-center mes redondeado">
 								1 MES
 							</div>
@@ -66,7 +71,7 @@ export const InicioBusqueda = () => {
 								1,99 $ / AL MES
 							</button>
 						</div>
-						<div className="col-3 border border-3 border-white mx-5 redondeado my-5">
+						<div className="col border border-3 border-white mx-5 redondeado my-5">
 							<div className="bg-black text-light text-center mes redondeado">
 								3 MESES
 							</div>
@@ -74,7 +79,7 @@ export const InicioBusqueda = () => {
 								4,99 $ / AL MES
 							</button>
 						</div>
-						<div className="col-3 border border-3 border-white mx-5 redondeado my-5">
+						<div className="col border border-3 border-white mx-5 redondeado my-5">
 							<div className="bg-black text-light text-center mes redondeado">
 								1 AÑO
 							</div>
