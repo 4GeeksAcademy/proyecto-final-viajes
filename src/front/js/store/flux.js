@@ -162,7 +162,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
-			crearCiudad: async (datos) => {
+			crearCiudad: async (datos, token) => {
 				try {
 					const res = await fetch(`${process.env.BACKEND_URL}ciudad`, {
 						method: 'POST',
@@ -172,7 +172,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}),
 						headers: {
 							"Content-Type": "application/json",
-							"Authorization": "Bearer " + token
+							Authorization: "Bearer " + token
 						}
 					})
 					const data = await res.json()

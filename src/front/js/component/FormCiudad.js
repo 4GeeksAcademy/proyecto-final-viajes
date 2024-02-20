@@ -15,26 +15,25 @@ const FormCiudad = () => {
         nombre_de_ciudad: nombre,
         id_pais: pais
     }
-    console.log(store.paises)
+    
     const handleSubmit = async (e) => {
         e.preventDefault()
         let user = localStorage.getItem("nombre")
         let nuevoToken = await actions.renovarToken(user)
         id ? 
-        await actions.editarCiudad(nombre, nuevoToken.token, id) :
-        await actions.crearCiudad(nombre, nuevoToken.token)
+        await actions.editarCiudad(datos, nuevoToken.token, id) :
+        await actions.crearCiudad(datos, nuevoToken.token)
         setNombre("")
         Swal.fire({
         position: "top-end",
         icon: "success",
-        title: id ? "Ciudad editada correctamente" : "Ciudad agregado correctamente",
+        title: id ? "Ciudad editada correctamente" : "Ciudad agregada correctamente",
         showConfirmButton: false,
         timer: 1500
         });
     }
 
     const handleChangeNombre = (e) => {
-        setCiudad({})
         setNombre(e.target.value)
     }
     const handleChangePais = (e) => {
